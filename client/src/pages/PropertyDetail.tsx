@@ -170,67 +170,67 @@ const PropertyDetail: React.FC = () => {
           </div>
         </div>
 
-        {/* Main content grid */}
+        {/* Property Gallery - Full Width */}
+        <div className="mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 h-[450px]">
+            <div className="md:col-span-2 md:row-span-2 h-full">
+              <img 
+                src={property.imageUrl} 
+                alt={property.name}
+                className="w-full h-full object-cover rounded-tl-lg" 
+              />
+            </div>
+            
+            {property.additionalImages?.slice(0, 4).map((image, index) => (
+              <div key={index} className={`${index === 3 ? 'relative' : ''}`}>
+                <img 
+                  src={image} 
+                  alt={`${property.name} - view ${index + 2}`}
+                  className={`w-full h-full object-cover 
+                    ${index === 0 ? 'rounded-tr-lg' : ''} 
+                    ${index === 2 ? 'rounded-bl-lg' : ''} 
+                    ${index === 3 ? 'rounded-br-lg' : ''}`}
+                />
+                {index === 3 && (
+                  <button className="absolute right-4 bottom-4 bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-800 px-4 py-2 rounded-lg shadow-sm transition-all">
+                    <span className="flex items-center">
+                      <Tv className="mr-2 h-4 w-4" /> Show all photos
+                    </span>
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Host Info - Below Gallery */}
+        <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
+          <div className="flex justify-between items-start">
+            <div>
+              <h2 className="text-xl font-bold mb-2">Entire {property.bedrooms === 0 ? 'studio' : 'apartment'} hosted by {property.hostName}</h2>
+              <ul className="flex flex-wrap text-gray-600 text-sm">
+                <li className="flex items-center mr-4">
+                  <UserCircle2 className="h-4 w-4 mr-2" /> {property.maxGuests} guests
+                </li>
+                <li className="flex items-center mr-4">
+                  <DoorOpen className="h-4 w-4 mr-2" /> {property.bedrooms} {property.bedrooms === 1 ? 'bedroom' : 'bedrooms'}
+                </li>
+                <li className="flex items-center mr-4">
+                  <Bed className="h-4 w-4 mr-2" /> {property.bedrooms} {property.bedrooms === 1 ? 'bed' : 'beds'}
+                </li>
+                <li className="flex items-center">
+                  <Bath className="h-4 w-4 mr-2" /> {property.bathrooms} {property.bathrooms === 1 ? 'bath' : 'baths'}
+                </li>
+              </ul>
+            </div>
+            <img src={property.hostImage || 'https://randomuser.me/api/portraits/men/32.jpg'} alt={property.hostName} className="w-12 h-12 rounded-full" />
+          </div>
+        </div>
+
+        {/* Main content grid - After Gallery */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left column for property details */}
           <div className="lg:col-span-2">
-            {/* Property Gallery */}
-            <div className="mb-8">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-2 h-[450px]">
-                <div className="md:col-span-2 md:row-span-2 h-full">
-                  <img 
-                    src={property.imageUrl} 
-                    alt={property.name}
-                    className="w-full h-full object-cover rounded-tl-lg" 
-                  />
-                </div>
-                
-                {property.additionalImages?.slice(0, 4).map((image, index) => (
-                  <div key={index} className={`${index === 3 ? 'relative' : ''}`}>
-                    <img 
-                      src={image} 
-                      alt={`${property.name} - view ${index + 2}`}
-                      className={`w-full h-full object-cover 
-                        ${index === 0 ? 'rounded-tr-lg' : ''} 
-                        ${index === 2 ? 'rounded-bl-lg' : ''} 
-                        ${index === 3 ? 'rounded-br-lg' : ''}`}
-                    />
-                    {index === 3 && (
-                      <button className="absolute right-4 bottom-4 bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-800 px-4 py-2 rounded-lg shadow-sm transition-all">
-                        <span className="flex items-center">
-                          <Tv className="mr-2 h-4 w-4" /> Show all photos
-                        </span>
-                      </button>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Host Info */}
-            <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
-              <div className="flex justify-between items-start">
-                <div>
-                  <h2 className="text-xl font-bold mb-2">Entire {property.bedrooms === 0 ? 'studio' : 'apartment'} hosted by {property.hostName}</h2>
-                  <ul className="flex flex-wrap text-gray-600 text-sm">
-                    <li className="flex items-center mr-4">
-                      <UserCircle2 className="h-4 w-4 mr-2" /> {property.maxGuests} guests
-                    </li>
-                    <li className="flex items-center mr-4">
-                      <DoorOpen className="h-4 w-4 mr-2" /> {property.bedrooms} {property.bedrooms === 1 ? 'bedroom' : 'bedrooms'}
-                    </li>
-                    <li className="flex items-center mr-4">
-                      <Bed className="h-4 w-4 mr-2" /> {property.bedrooms} {property.bedrooms === 1 ? 'bed' : 'beds'}
-                    </li>
-                    <li className="flex items-center">
-                      <Bath className="h-4 w-4 mr-2" /> {property.bathrooms} {property.bathrooms === 1 ? 'bath' : 'baths'}
-                    </li>
-                  </ul>
-                </div>
-                <img src={property.hostImage || 'https://randomuser.me/api/portraits/men/32.jpg'} alt={property.hostName} className="w-12 h-12 rounded-full" />
-              </div>
-            </div>
-
             {/* Property Description */}
             <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
               <div className="prose max-w-none text-gray-600">
