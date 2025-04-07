@@ -378,13 +378,8 @@ const PropertyDetail: React.FC = () => {
               <div className="mt-8 pt-6 border-t border-gray-200">
                 <h3 className="text-lg font-semibold mb-4">Verified Reviews from Revyoos</h3>
                 <RevyoosWidget 
-                  propertyId={property.id}
-                  propertyName={property.name}
-                  location={`${property.location}, ${property.city}, ${property.country}`}
-                  apiKey="REVYOOS_API_KEY" 
-                  theme="light"
-                  language="en"
-                  widget="default"
+                  embedCode="eyJwIjoiNjVlMGZiNTg5MjBlYWEwMDYxMjdlNWVjIn0="
+                  className="w-full"
                 />
               </div>
             </div>
