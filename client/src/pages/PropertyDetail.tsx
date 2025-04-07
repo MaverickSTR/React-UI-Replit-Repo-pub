@@ -176,33 +176,34 @@ const PropertyDetail: React.FC = () => {
           <div className="lg:col-span-2">
             {/* Property Gallery */}
             <div className="mb-8">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-2 h-[400px]">
-                <div className="md:col-span-2 h-full">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-2 h-[450px]">
+                <div className="md:col-span-2 md:row-span-2 h-full">
                   <img 
                     src={property.imageUrl} 
                     alt={property.name}
-                    className="w-full h-full object-cover rounded-tl-lg rounded-bl-lg" 
+                    className="w-full h-full object-cover rounded-tl-lg" 
                   />
                 </div>
                 
-                <div className="flex flex-col gap-2 h-full">
-                  {property.additionalImages?.slice(0, 2).map((image, index) => (
-                    <div key={index} className={`h-[196px] ${index === 1 ? 'relative' : ''}`}>
-                      <img 
-                        src={image} 
-                        alt={`${property.name} - view ${index + 2}`}
-                        className={`w-full h-full object-cover ${index === 0 ? 'rounded-tr-lg' : ''} ${index === 1 ? 'rounded-br-lg' : ''}`}
-                      />
-                      {index === 1 && (
-                        <button className="absolute right-4 bottom-4 bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-800 px-4 py-2 rounded-lg shadow-sm transition-all">
-                          <span className="flex items-center">
-                            <Tv className="mr-2 h-4 w-4" /> Show all photos
-                          </span>
-                        </button>
-                      )}
-                    </div>
-                  ))}
-                </div>
+                {property.additionalImages?.slice(0, 4).map((image, index) => (
+                  <div key={index} className={`${index === 3 ? 'relative' : ''}`}>
+                    <img 
+                      src={image} 
+                      alt={`${property.name} - view ${index + 2}`}
+                      className={`w-full h-full object-cover 
+                        ${index === 0 ? 'rounded-tr-lg' : ''} 
+                        ${index === 2 ? 'rounded-bl-lg' : ''} 
+                        ${index === 3 ? 'rounded-br-lg' : ''}`}
+                    />
+                    {index === 3 && (
+                      <button className="absolute right-4 bottom-4 bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-800 px-4 py-2 rounded-lg shadow-sm transition-all">
+                        <span className="flex items-center">
+                          <Tv className="mr-2 h-4 w-4" /> Show all photos
+                        </span>
+                      </button>
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
 
