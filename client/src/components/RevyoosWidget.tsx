@@ -1,16 +1,15 @@
 import React from 'react';
 
 interface RevyoosWidgetProps {
-  embedCode: string;
   className?: string;
 }
 
-const RevyoosWidget: React.FC<RevyoosWidgetProps> = ({ embedCode, className = "" }) => {
+const RevyoosWidget: React.FC<RevyoosWidgetProps> = ({ className = "" }) => {
   return (
     <div className={`revyoos-widget-container ${className}`}>
       <div 
-        className="revyoos-embed-widget" 
-        data-revyoos-embed={embedCode}
+        id="revyoos-widget" 
+        className="w-full min-h-[200px]"
       ></div>
     </div>
   );

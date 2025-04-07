@@ -377,10 +377,7 @@ const PropertyDetail: React.FC = () => {
               {/* Revyoos Widget */}
               <div className="mt-8 pt-6 border-t border-gray-200">
                 <h3 className="text-lg font-semibold mb-4">Verified Reviews from Revyoos</h3>
-                <RevyoosWidget 
-                  embedCode="eyJwIjoiNjVlMGZiNTg5MjBlYWEwMDYxMjdlNWVjIn0="
-                  className="w-full"
-                />
+                <RevyoosWidget className="w-full" />
               </div>
             </div>
 
