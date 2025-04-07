@@ -24,6 +24,7 @@ import {
 } from 'lucide-react';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Label } from '@/components/ui/label';
@@ -154,6 +155,9 @@ const PropertyDetail: React.FC = () => {
         <div className="mb-6">
           <h1 className="text-3xl font-bold mb-2">{property.name}</h1>
           <div className="flex flex-wrap items-center text-sm gap-y-2">
+            <Badge variant="outline" className="mr-2">
+              {property.type}
+            </Badge>
             <div className="flex items-center mr-4 text-gray-600">
               <MapPin className="h-4 w-4 mr-1" />
               <span>{property.location}</span>
@@ -211,7 +215,12 @@ const PropertyDetail: React.FC = () => {
           <div className="lg:col-span-2">
             {/* Property Title and Host Info */}
             <div className="mb-6">
-              <h2 className="text-2xl font-bold mb-2">Entire {property.bedrooms === 0 ? 'home' : 'home'} in {property.city}, {property.country}</h2>
+              <h2 className="text-2xl font-bold mb-2">
+                Entire {property.type} in {property.city}, {property.country}
+                <Badge variant="secondary" className="ml-2 text-xs">
+                  {property.type}
+                </Badge>
+              </h2>
               <p className="text-gray-600 mb-4">{property.maxGuests} guests · {property.bedrooms} {property.bedrooms === 1 ? 'bedroom' : 'bedrooms'} · {property.bedrooms} {property.bedrooms === 1 ? 'bed' : 'beds'} · {property.bathrooms} {property.bathrooms === 1 ? 'bath' : 'baths'}</p>
               
               <div className="flex items-center mb-6">

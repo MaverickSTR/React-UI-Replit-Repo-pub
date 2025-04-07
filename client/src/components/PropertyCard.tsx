@@ -3,6 +3,7 @@ import { Link } from 'wouter';
 import { Property } from '@shared/schema';
 import { Star } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import HeartButton from '@/components/ui/HeartButton';
 import { formatPrice } from '@/lib/utils';
 
@@ -28,6 +29,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
     bedrooms,
     bathrooms,
     maxGuests,
+    type
   } = property;
 
   // Calculate room features text
@@ -44,6 +46,11 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
           />
           <div className="absolute top-3 right-3">
             <HeartButton propertyId={id} />
+          </div>
+          <div className="absolute bottom-3 left-3">
+            <Badge variant="secondary" className="bg-white/80 hover:bg-white/80 text-black font-medium shadow-sm">
+              {type}
+            </Badge>
           </div>
         </div>
         <CardContent className="p-4">

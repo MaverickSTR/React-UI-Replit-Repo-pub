@@ -1,4 +1,4 @@
-import { pgTable, text, serial, integer, boolean, timestamp, doublePrecision } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, timestamp, doublePrecision, jsonb } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -27,10 +27,17 @@ export const properties = pgTable("properties", {
   reviewCount: integer("review_count").default(0),
   imageUrl: text("image_url").notNull(),
   additionalImages: text("additional_images").array(), // array of image URLs
+  type: text("type").default("Apartment"), // Type of property (Apartment, Villa, House, etc.)
   bedrooms: integer("bedrooms").notNull(),
   bathrooms: integer("bathrooms").notNull(),
   maxGuests: integer("max_guests").notNull(),
   amenities: text("amenities").array(),
+  bedroomDetails: jsonb("bedroom_details").$type<Array<{
+    id: number;
+    name: string;
+    beds: Array<{type: string; count: number}>;
+    image: string;
+  }>>(),
   hostId: integer("host_id").notNull(),
   hostName: text("host_name").notNull(),
   hostImage: text("host_image"),

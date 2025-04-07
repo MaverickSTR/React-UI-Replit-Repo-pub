@@ -156,6 +156,7 @@ export class MemStorage implements IStorage {
     const newProperty: Property = { 
       ...property, 
       id, 
+      type: property.type || 'Apartment',
       rating: property.rating || 0,
       reviewCount: property.reviewCount || 0,
       createdAt: new Date()
@@ -411,6 +412,7 @@ export class MemStorage implements IStorage {
         price: 189,
         rating: 4.92,
         reviewCount: 128,
+        type: "Apartment",
         imageUrl: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
         additionalImages: [
           "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
@@ -422,6 +424,20 @@ export class MemStorage implements IStorage {
         bathrooms: 2,
         maxGuests: 4,
         amenities: ["High-speed WiFi", "Air conditioning", "55\" HDTV with Netflix", "Fully equipped kitchen", "Washer/dryer", "Elevator in building", "Gym access", "24/7 security"],
+        bedroomDetails: [
+          {
+            id: 1,
+            name: 'Bedroom 1',
+            beds: [{ type: 'king', count: 1 }, { type: 'air mattress', count: 1 }],
+            image: 'https://images.unsplash.com/photo-1560448204-603b3fc33ddc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3'
+          },
+          {
+            id: 2,
+            name: 'Bedroom 2',
+            beds: [{ type: 'queen', count: 1 }, { type: 'single', count: 1 }],
+            image: 'https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3'
+          }
+        ],
         hostId: 1,
         hostName: "Michael",
         hostImage: "https://randomuser.me/api/portraits/men/32.jpg",
@@ -438,12 +454,33 @@ export class MemStorage implements IStorage {
         price: 395,
         rating: 4.97,
         reviewCount: 85,
+        type: "Villa",
         imageUrl: "https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
         additionalImages: [],
         bedrooms: 3,
         bathrooms: 2,
         maxGuests: 6,
         amenities: ["Private beach access", "Ocean view", "Outdoor BBQ", "WiFi", "Air conditioning", "Fully equipped kitchen"],
+        bedroomDetails: [
+          {
+            id: 1,
+            name: 'Master Bedroom',
+            beds: [{ type: 'king', count: 1 }],
+            image: 'https://images.unsplash.com/photo-1617325247661-675ab4b64ae2?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3'
+          },
+          {
+            id: 2,
+            name: 'Guest Bedroom',
+            beds: [{ type: 'queen', count: 1 }, { type: 'single', count: 1 }],
+            image: 'https://images.unsplash.com/photo-1558882224-dda166733046?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3'
+          },
+          {
+            id: 3,
+            name: 'Kids Room',
+            beds: [{ type: 'twin', count: 2 }],
+            image: 'https://images.unsplash.com/photo-1560448204-61dc36dc98c8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3'
+          }
+        ],
         hostId: 2,
         hostName: "Sarah",
         hostImage: "https://randomuser.me/api/portraits/women/45.jpg",
@@ -460,6 +497,7 @@ export class MemStorage implements IStorage {
         price: 150,
         rating: 4.85,
         reviewCount: 102,
+        type: "Loft",
         imageUrl: "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
         additionalImages: [],
         bedrooms: 1,
@@ -482,6 +520,7 @@ export class MemStorage implements IStorage {
         price: 225,
         rating: 4.92,
         reviewCount: 74,
+        type: "Cabin",
         imageUrl: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
         additionalImages: [],
         bedrooms: 2,
@@ -505,6 +544,7 @@ export class MemStorage implements IStorage {
         price: 145,
         rating: 4.88,
         reviewCount: 93,
+        type: "Studio",
         imageUrl: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
         additionalImages: [],
         bedrooms: 0,
@@ -527,6 +567,7 @@ export class MemStorage implements IStorage {
         price: 250,
         rating: 4.95,
         reviewCount: 68,
+        type: "Brownstone",
         imageUrl: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80",
         additionalImages: [],
         bedrooms: 3,
