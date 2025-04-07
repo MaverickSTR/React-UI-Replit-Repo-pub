@@ -265,51 +265,51 @@ const PropertyDetail: React.FC = () => {
             <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
               <div className="flex items-center mb-6">
                 <Star className="h-5 w-5 text-amber-500 fill-current mr-2" />
-                <span className="font-bold text-lg mr-1">{property.rating?.toFixed(2)}</span>
+                <span className="font-bold text-lg mr-1">4.97</span>
                 <span className="text-gray-600 mr-1">·</span>
-                <span className="text-gray-600">{property.reviewCount} reviews</span>
+                <span className="text-gray-600">85 reviews</span>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-12 mb-6">
                 <div className="flex items-center">
                   <span className="w-32 text-sm text-gray-600">Cleanliness</span>
-                  <div className="flex-1 bg-gray-200 h-2 rounded-full">
-                    <div className="bg-primary h-2 rounded-full" style={{ width: "98%" }}></div>
+                  <div className="flex-1 bg-gray-200 h-1 rounded-full">
+                    <div className="bg-primary h-1 rounded-full" style={{ width: "98%" }}></div>
                   </div>
                   <span className="ml-2 text-sm font-medium">4.9</span>
                 </div>
                 <div className="flex items-center">
                   <span className="w-32 text-sm text-gray-600">Accuracy</span>
-                  <div className="flex-1 bg-gray-200 h-2 rounded-full">
-                    <div className="bg-primary h-2 rounded-full" style={{ width: "96%" }}></div>
+                  <div className="flex-1 bg-gray-200 h-1 rounded-full">
+                    <div className="bg-primary h-1 rounded-full" style={{ width: "96%" }}></div>
                   </div>
                   <span className="ml-2 text-sm font-medium">4.8</span>
                 </div>
                 <div className="flex items-center">
                   <span className="w-32 text-sm text-gray-600">Communication</span>
-                  <div className="flex-1 bg-gray-200 h-2 rounded-full">
-                    <div className="bg-primary h-2 rounded-full" style={{ width: "100%" }}></div>
+                  <div className="flex-1 bg-gray-200 h-1 rounded-full">
+                    <div className="bg-primary h-1 rounded-full" style={{ width: "100%" }}></div>
                   </div>
                   <span className="ml-2 text-sm font-medium">5.0</span>
                 </div>
                 <div className="flex items-center">
                   <span className="w-32 text-sm text-gray-600">Location</span>
-                  <div className="flex-1 bg-gray-200 h-2 rounded-full">
-                    <div className="bg-primary h-2 rounded-full" style={{ width: "94%" }}></div>
+                  <div className="flex-1 bg-gray-200 h-1 rounded-full">
+                    <div className="bg-primary h-1 rounded-full" style={{ width: "94%" }}></div>
                   </div>
                   <span className="ml-2 text-sm font-medium">4.7</span>
                 </div>
                 <div className="flex items-center">
                   <span className="w-32 text-sm text-gray-600">Check-in</span>
-                  <div className="flex-1 bg-gray-200 h-2 rounded-full">
-                    <div className="bg-primary h-2 rounded-full" style={{ width: "98%" }}></div>
+                  <div className="flex-1 bg-gray-200 h-1 rounded-full">
+                    <div className="bg-primary h-1 rounded-full" style={{ width: "98%" }}></div>
                   </div>
                   <span className="ml-2 text-sm font-medium">4.9</span>
                 </div>
                 <div className="flex items-center">
                   <span className="w-32 text-sm text-gray-600">Value</span>
-                  <div className="flex-1 bg-gray-200 h-2 rounded-full">
-                    <div className="bg-primary h-2 rounded-full" style={{ width: "92%" }}></div>
+                  <div className="flex-1 bg-gray-200 h-1 rounded-full">
+                    <div className="bg-primary h-1 rounded-full" style={{ width: "92%" }}></div>
                   </div>
                   <span className="ml-2 text-sm font-medium">4.6</span>
                 </div>
@@ -354,7 +354,7 @@ const PropertyDetail: React.FC = () => {
                 )}
               </div>
               
-              <Button variant="outline" className="mt-6 border border-gray-800 hover:bg-gray-100 text-gray-800 font-medium px-6 py-2 rounded-lg transition-colors">
+              <Button variant="outline" className="mt-6 border border-gray-300 hover:border-gray-800 bg-white text-gray-800 font-medium px-6 py-2 rounded-full transition-colors">
                 Show all reviews
               </Button>
               
