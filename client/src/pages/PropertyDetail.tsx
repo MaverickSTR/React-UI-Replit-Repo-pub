@@ -154,11 +154,6 @@ const PropertyDetail: React.FC = () => {
         <div className="mb-6">
           <h1 className="text-3xl font-bold mb-2">{property.name}</h1>
           <div className="flex flex-wrap items-center text-sm gap-y-2">
-            <div className="flex items-center mr-4">
-              <Star className="h-4 w-4 text-amber-500 fill-current" />
-              <span className="ml-1 font-medium">{property.rating?.toFixed(2)}</span>
-              <span className="ml-1 text-gray-600">({property.reviewCount} reviews)</span>
-            </div>
             <div className="flex items-center mr-4 text-gray-600">
               <MapPin className="h-4 w-4 mr-1" />
               <span>{property.location}</span>
@@ -210,34 +205,36 @@ const PropertyDetail: React.FC = () => {
           </div>
         </div>
 
-        {/* Host Info - Below Gallery */}
-        <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
-          <div className="flex justify-between items-start">
-            <div>
-              <h2 className="text-xl font-bold mb-2">Entire {property.bedrooms === 0 ? 'studio' : 'apartment'} hosted by {property.hostName}</h2>
-              <ul className="flex flex-wrap text-gray-600 text-sm">
-                <li className="flex items-center mr-4">
-                  <UserCircle2 className="h-4 w-4 mr-2" /> {property.maxGuests} guests
-                </li>
-                <li className="flex items-center mr-4">
-                  <DoorOpen className="h-4 w-4 mr-2" /> {property.bedrooms} {property.bedrooms === 1 ? 'bedroom' : 'bedrooms'}
-                </li>
-                <li className="flex items-center mr-4">
-                  <Bed className="h-4 w-4 mr-2" /> {property.bedrooms} {property.bedrooms === 1 ? 'bed' : 'beds'}
-                </li>
-                <li className="flex items-center">
-                  <Bath className="h-4 w-4 mr-2" /> {property.bathrooms} {property.bathrooms === 1 ? 'bath' : 'baths'}
-                </li>
-              </ul>
-            </div>
-            <img src={property.hostImage || 'https://randomuser.me/api/portraits/men/32.jpg'} alt={property.hostName} className="w-12 h-12 rounded-full" />
-          </div>
-        </div>
-
         {/* Main content grid - After Gallery */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left column for property details */}
           <div className="lg:col-span-2">
+            {/* Property Title and Host Info */}
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold mb-2">Entire {property.bedrooms === 0 ? 'home' : 'home'} in {property.city}, {property.country}</h2>
+              <p className="text-gray-600 mb-4">{property.maxGuests} guests · {property.bedrooms} {property.bedrooms === 1 ? 'bedroom' : 'bedrooms'} · {property.bedrooms} {property.bedrooms === 1 ? 'bed' : 'beds'} · {property.bathrooms} {property.bathrooms === 1 ? 'bath' : 'baths'}</p>
+              
+              <div className="flex items-center mb-6">
+                <div className="flex items-center bg-amber-50 px-3 py-2 rounded-lg border border-amber-200 mr-4">
+                  <span className="text-amber-700 font-semibold mr-2">Guest favorite</span>
+                  <span className="text-gray-600 text-sm">One of the most loved homes</span>
+                </div>
+                <div className="flex items-center">
+                  <Star className="h-5 w-5 text-amber-500 fill-current" />
+                  <span className="font-bold text-lg mx-2">{property.rating?.toFixed(1)}</span>
+                  <span className="text-gray-600">({property.reviewCount} reviews)</span>
+                </div>
+              </div>
+              
+              <div className="flex items-start border-t border-gray-200 pt-4">
+                <img src={property.hostImage || 'https://randomuser.me/api/portraits/men/32.jpg'} alt={property.hostName} className="w-12 h-12 rounded-full mr-4" />
+                <div>
+                  <h3 className="font-medium">Hosted by {property.hostName}</h3>
+                  <p className="text-gray-600 text-sm">Superhost · 3 years hosting</p>
+                </div>
+              </div>
+            </div>
+            
             {/* Property Description */}
             <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
               <div className="prose max-w-none text-gray-600">
@@ -425,24 +422,14 @@ const PropertyDetail: React.FC = () => {
           <div className="lg:col-span-1">
             <div className="sticky top-24">
               <div className="bg-white p-6 rounded-lg shadow-sm mb-4">
-                <div className="flex justify-between items-start mb-6">
-                  <div>
-                    <span className="text-2xl font-bold">{formatPrice(property.price)}</span>
-                    <span className="text-gray-600"> night</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Star className="h-4 w-4 text-amber-500 fill-current" />
-                    <span className="ml-1 text-sm font-medium">{property.rating?.toFixed(2)}</span>
-                    <span className="ml-1 text-gray-600 text-sm">({property.reviewCount})</span>
-                  </div>
-                </div>
+                <h3 className="text-xl font-bold mb-6">Add dates for prices</h3>
                 
                 {/* Booking Form */}
                 <form>
                   <div className="border border-gray-300 rounded-lg mb-4 overflow-hidden">
                     <div className="grid grid-cols-2">
                       <div className="p-3 border-r border-b border-gray-300">
-                        <Label className="block text-xs font-medium text-gray-700 mb-1">CHECK-IN</Label>
+                        <Label className="block text-xs uppercase font-medium text-gray-700 mb-1">Check-in</Label>
                         <Input 
                           type="text" 
                           placeholder="Add date" 
@@ -452,7 +439,7 @@ const PropertyDetail: React.FC = () => {
                         />
                       </div>
                       <div className="p-3 border-b border-gray-300">
-                        <Label className="block text-xs font-medium text-gray-700 mb-1">CHECKOUT</Label>
+                        <Label className="block text-xs uppercase font-medium text-gray-700 mb-1">Checkout</Label>
                         <Input 
                           type="text" 
                           placeholder="Add date"
@@ -462,10 +449,10 @@ const PropertyDetail: React.FC = () => {
                         />
                       </div>
                       <div className="p-3 col-span-2">
-                        <Label className="block text-xs font-medium text-gray-700 mb-1">GUESTS</Label>
+                        <Label className="block text-xs uppercase font-medium text-gray-700 mb-1">Guests</Label>
                         <Select value={guests} onValueChange={setGuests}>
                           <SelectTrigger className="w-full border-none p-0 focus:ring-0 text-gray-900 h-auto shadow-none">
-                            <SelectValue placeholder="Select guests" />
+                            <SelectValue placeholder="1 guest" />
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="1 guest">1 guest</SelectItem>
@@ -481,31 +468,10 @@ const PropertyDetail: React.FC = () => {
                   <Button
                     type="button"
                     onClick={handleBooking}
-                    className="w-full bg-primary hover:bg-blue-600 text-white font-medium py-3 rounded-lg transition-colors mb-4"
+                    className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3 rounded-lg transition-colors mb-4"
                   >
-                    Book now
+                    Check availability
                   </Button>
-                  
-                  <p className="text-center text-sm text-gray-500 mb-6">You won't be charged yet</p>
-                  
-                  <div className="space-y-3">
-                    <div className="flex justify-between">
-                      <span className="underline">{formatPrice(property.price)} x 6 nights</span>
-                      <span>{formatPrice(nightlyTotal)}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="underline">Cleaning fee</span>
-                      <span>{formatPrice(cleaningFee)}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="underline">Service fee</span>
-                      <span>{formatPrice(serviceFee)}</span>
-                    </div>
-                    <div className="pt-3 border-t border-gray-200 flex justify-between font-bold">
-                      <span>Total</span>
-                      <span>{formatPrice(totalPrice)}</span>
-                    </div>
-                  </div>
                 </form>
               </div>
               
