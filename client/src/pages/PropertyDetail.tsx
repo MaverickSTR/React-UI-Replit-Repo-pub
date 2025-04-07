@@ -262,20 +262,7 @@ const PropertyDetail: React.FC = () => {
               </Button>
             </div>
 
-            {/* Location */}
-            <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
-              <h2 className="text-xl font-bold mb-4">Location</h2>
-              <div className="aspect-[16/9] bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="h-8 w-8 text-gray-400 mx-auto mb-2" />
-                  <p className="text-gray-500">Map view of {property.location}</p>
-                </div>
-              </div>
-              <div className="text-gray-600">
-                <p className="mb-2"><strong>{property.location}, {property.city}</strong></p>
-                <p>Located in one of {property.city}'s most sought-after neighborhoods, you'll be close to popular attractions and local amenities.</p>
-              </div>
-            </div>
+
 
             {/* Reviews */}
             <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
@@ -522,12 +509,27 @@ const PropertyDetail: React.FC = () => {
                 </form>
               </div>
               
-              <div className="bg-white p-4 rounded-lg shadow-sm">
+              <div className="bg-white p-4 rounded-lg shadow-sm mb-4">
                 <div className="flex items-start">
                   <Shield className="text-primary mt-1 mr-3 h-5 w-5" />
                   <p className="text-sm text-gray-600">
                     <span className="font-semibold text-gray-800">Direct Booking Protection.</span> Every booking includes protection against host cancellations, listing inaccuracies, and other issues.
                   </p>
+                </div>
+              </div>
+              
+              {/* Location Map */}
+              <div className="bg-white p-4 rounded-lg shadow-sm">
+                <h3 className="text-lg font-semibold mb-3">Location</h3>
+                <div className="aspect-[16/9] bg-gray-200 rounded-lg mb-3 flex items-center justify-center">
+                  <div className="text-center">
+                    <MapPin className="h-8 w-8 text-gray-400 mx-auto mb-2" />
+                    <p className="text-gray-500">Map view of {property.location}</p>
+                  </div>
+                </div>
+                <div className="text-sm text-gray-600">
+                  <p className="mb-2"><strong>{property.location}, {property.city}</strong></p>
+                  <p>Located in one of {property.city}'s most sought-after neighborhoods.</p>
                 </div>
               </div>
             </div>
