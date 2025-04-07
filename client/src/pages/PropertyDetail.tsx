@@ -45,6 +45,36 @@ import { Card, CardContent } from '@/components/ui/card';
 import { formatPrice, formatDate } from '@/lib/utils';
 import { Meta, PropertyStructuredData } from '@/lib/seo';
 
+// Generate mock bedroom details if they don't exist in the property data
+const generateMockBedroomDetails = (property: any) => {
+  const bedTypes = ['king', 'queen', 'double', 'single', 'sofa bed', 'bunk bed', 'air mattress'];
+  const bedroomNames = ['Master Bedroom', 'Guest Bedroom', 'Kids Room', 'Bedroom', 'Cozy Bedroom'];
+  const bedroomImages = [
+    'https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3',
+    'https://images.unsplash.com/photo-1560448204-603b3fc33ddc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3',
+    'https://images.unsplash.com/photo-1617325247661-675ab4b64ae2?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3',
+    'https://images.unsplash.com/photo-1558882224-dda166733046?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3'
+  ];
+  
+  // Create mock bedrooms based on the number of bedrooms in the property
+  const numBedrooms = property.bedrooms || 2;
+  return Array.from({ length: numBedrooms }, (_, i) => {
+    // Randomize number of beds between 1 and 2
+    const numBeds = Math.floor(Math.random() * 2) + 1;
+    
+    return {
+      id: i + 1,
+      name: i < bedroomNames.length ? bedroomNames[i] : `${bedroomNames[4]} ${i + 1}`,
+      beds: Array.from({ length: numBeds }, (_, j) => {
+        // Select a random bed type
+        const bedType = bedTypes[Math.floor(Math.random() * bedTypes.length)];
+        return { type: bedType, count: 1 };
+      }),
+      image: bedroomImages[i % bedroomImages.length]
+    };
+  });
+};
+
 const PropertyDetail: React.FC = () => {
   const [match, params] = useRoute('/property/:id');
   const propertyId = match ? parseInt(params.id) : 0;
@@ -287,7 +317,7 @@ const PropertyDetail: React.FC = () => {
                   className="mx-auto w-full"
                 >
                   <CarouselContent>
-                    {property.bedroomDetails?.map((bedroom, index) => (
+                    {(property.bedroomDetails?.length ? property.bedroomDetails : generateMockBedroomDetails(property)).map((bedroom, index) => (
                       <CarouselItem key={index} className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
                         <div className="p-1 h-full">
                           <div className="rounded-xl border border-gray-200 overflow-hidden h-full flex flex-col">
