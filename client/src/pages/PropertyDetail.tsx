@@ -19,16 +19,15 @@ import {
   Bath,
   Shield,
   Share,
-  Heart,
-  ChevronRight
+  Heart
 } from 'lucide-react';
-import { Breadcrumb } from '@/components/ui/breadcrumb';
+import Breadcrumb from '@/components/ui/Breadcrumb';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
-import { formatPrice, formatDate, getRatingPercentage } from '@/lib/utils';
+import { formatPrice, formatDate } from '@/lib/utils';
 import { Meta, PropertyStructuredData } from '@/lib/seo';
 
 const PropertyDetail: React.FC = () => {
@@ -140,7 +139,9 @@ const PropertyDetail: React.FC = () => {
       
       <div className="container mx-auto px-4 pt-6">
         {/* Breadcrumbs */}
-        <Breadcrumb items={breadcrumbItems} />
+        <nav>
+          <Breadcrumb items={breadcrumbItems} />
+        </nav>
 
         {/* Property Title */}
         <div className="mb-6">
@@ -169,39 +170,42 @@ const PropertyDetail: React.FC = () => {
           </div>
         </div>
 
-        {/* Property Gallery */}
-        <div className="mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 h-[400px] md:h-[500px]">
-            <div className="md:col-span-2 md:row-span-2 h-full">
-              <img 
-                src={property.imageUrl} 
-                alt={property.name}
-                className="w-full h-full object-cover rounded-tl-lg rounded-bl-lg" 
-              />
-            </div>
-            
-            {property.additionalImages?.slice(0, 4).map((image, index) => (
-              <div key={index} className={`hidden md:block h-full ${index === 3 ? 'relative' : ''} ${index === 0 ? 'rounded-tr-lg' : ''} ${index === 3 ? 'rounded-br-lg' : ''}`}>
-                <img 
-                  src={image} 
-                  alt={`${property.name} - view ${index + 2}`}
-                  className={`w-full h-full object-cover ${index === 0 ? 'rounded-tr-lg' : ''} ${index === 3 ? 'rounded-br-lg' : ''}`}
-                />
-                {index === 3 && (
-                  <button className="absolute right-4 bottom-4 bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-800 px-4 py-2 rounded-lg shadow-sm transition-all">
-                    <span className="flex items-center">
-                      <Tv className="mr-2 h-4 w-4" /> Show all photos
-                    </span>
-                  </button>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-
+        {/* Main content grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left column for property details */}
           <div className="lg:col-span-2">
+            {/* Property Gallery */}
+            <div className="mb-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2 h-[400px]">
+                <div className="md:col-span-2 h-full">
+                  <img 
+                    src={property.imageUrl} 
+                    alt={property.name}
+                    className="w-full h-full object-cover rounded-tl-lg rounded-bl-lg" 
+                  />
+                </div>
+                
+                <div className="flex flex-col gap-2 h-full">
+                  {property.additionalImages?.slice(0, 2).map((image, index) => (
+                    <div key={index} className={`h-[196px] ${index === 1 ? 'relative' : ''}`}>
+                      <img 
+                        src={image} 
+                        alt={`${property.name} - view ${index + 2}`}
+                        className={`w-full h-full object-cover ${index === 0 ? 'rounded-tr-lg' : ''} ${index === 1 ? 'rounded-br-lg' : ''}`}
+                      />
+                      {index === 1 && (
+                        <button className="absolute right-4 bottom-4 bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-800 px-4 py-2 rounded-lg shadow-sm transition-all">
+                          <span className="flex items-center">
+                            <Tv className="mr-2 h-4 w-4" /> Show all photos
+                          </span>
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
             {/* Host Info */}
             <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
               <div className="flex justify-between items-start">
