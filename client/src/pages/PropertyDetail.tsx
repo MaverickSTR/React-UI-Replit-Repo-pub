@@ -263,13 +263,7 @@ const PropertyDetail: React.FC = () => {
 
             {/* Reviews Section with Revyoos Widget */}
             <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
-              <div className="flex items-center mb-6">
-                <Star className="h-5 w-5 text-amber-500 fill-current mr-2" />
-                <span className="font-bold text-lg mr-1">4.97</span>
-                <span className="text-gray-600 mr-1">·</span>
-                <span className="text-gray-600">85 reviews</span>
-              </div>
-              
+              <h2 className="text-xl font-bold mb-6">Guest Reviews</h2>
               <RevyoosWidget className="w-full" />
             </div>
 
