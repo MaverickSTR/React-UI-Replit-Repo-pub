@@ -11,3 +11,25 @@
     @apply font-sans antialiased bg-background text-foreground;
   }
 }
+
+/* Custom styles for embedding widgets */
+iframe, .revyoos-embed-widget, .booking-widget-container {
+  max-width: 100% !important;
+  width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Fix for any embedded widget that might cause horizontal scrolling */
+.booking-widget-container iframe,
+.revyoos-embed-widget iframe {
+  border: none !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Ensure all content stays within bounds */
+.overflow-x-hidden {
+  overflow-x: hidden !important;
+}

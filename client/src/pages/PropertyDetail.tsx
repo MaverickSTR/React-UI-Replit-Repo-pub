@@ -262,9 +262,11 @@ const PropertyDetail: React.FC = () => {
 
 
             {/* Reviews Section with Revyoos Widget */}
-            <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
+            <div className="bg-white p-6 rounded-lg shadow-sm mb-6 overflow-hidden">
               <h2 className="text-xl font-bold mb-6">Guest Reviews</h2>
-              <RevyoosWidget className="w-full" widgetCode={property.reviewWidgetCode || undefined} />
+              <div className="w-full overflow-x-hidden">
+                <RevyoosWidget className="w-full" widgetCode={property.reviewWidgetCode || undefined} />
+              </div>
             </div>
 
             {/* FAQ Section */}
@@ -327,13 +329,37 @@ const PropertyDetail: React.FC = () => {
                 <h3 className="text-xl font-bold mb-6">Booking</h3>
                 
                 {/* Booking Widget Iframe */}
-                <div className="booking-widget-container">
+                <div className="booking-widget-container w-full overflow-hidden">
                   <iframe 
                     id="booking-iframe" 
-                    sandbox="allow-top-navigation allow-scripts allow-same-origin" 
-                    style={{ width: '100%', height: '500px' }} 
-                    frameBorder="0" 
+                    sandbox="allow-top-navigation allow-scripts allow-same-origin allow-forms" 
+                    className="w-full min-h-[700px] lg:min-h-[800px] border-0"
+                    scrolling="no"
                     src={property.bookingWidgetUrl || "https://booking.hospitable.com/widget/55ea1cea-3c99-40f7-b98b-3de392f74a36/1080590"}
+                    onLoad={(e) => {
+                      // Add event listener to adjust height based on content
+                      const iframe = e.currentTarget;
+                      try {
+                        // Attempt to resize iframe based on content height
+                        const resizeObserver = new ResizeObserver(() => {
+                          try {
+                            if (iframe.contentWindow?.document.body) {
+                              const height = iframe.contentWindow.document.body.scrollHeight;
+                              iframe.style.height = `${height + 50}px`; // Add padding
+                            }
+                          } catch (err) {
+                            console.log('Could not adjust iframe height dynamically');
+                          }
+                        });
+                        
+                        // Observe size changes if possible
+                        if (iframe.contentWindow?.document.body) {
+                          resizeObserver.observe(iframe.contentWindow.document.body);
+                        }
+                      } catch (err) {
+                        console.log('Failed to set up dynamic resizing');
+                      }
+                    }}
                   ></iframe>
                 </div>
               </div>
