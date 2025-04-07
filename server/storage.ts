@@ -425,6 +425,8 @@ export class MemStorage implements IStorage {
         hostId: 1,
         hostName: "Michael",
         hostImage: "https://randomuser.me/api/portraits/men/32.jpg",
+        bookingWidgetUrl: "https://booking.hospitable.com/widget/55ea1cea-3c99-40f7-b98b-3de392f74a36/1080590",
+        reviewWidgetCode: "eyJwIjoiNjVlMGZiNTg5MjBlYWEwMDYxMjdlNWVjIn0=",
         isFeatured: true
       },
       {
@@ -445,6 +447,8 @@ export class MemStorage implements IStorage {
         hostId: 2,
         hostName: "Sarah",
         hostImage: "https://randomuser.me/api/portraits/women/45.jpg",
+        bookingWidgetUrl: "https://booking.hospitable.com/widget/55ea1cea-3c99-40f7-b98b-3de392f74a36/1080590",
+        reviewWidgetCode: "eyJwIjoiNjVlMGZiNTg5MjBlYWEwMDYxMjdlNWVjIn0=",
         isFeatured: true
       },
       {
@@ -465,6 +469,8 @@ export class MemStorage implements IStorage {
         hostId: 3,
         hostName: "David",
         hostImage: "https://randomuser.me/api/portraits/men/67.jpg",
+        bookingWidgetUrl: "https://booking.hospitable.com/widget/55ea1cea-3c99-40f7-b98b-3de392f74a36/1080590",
+        reviewWidgetCode: "eyJwIjoiNjVlMGZiNTg5MjBlYWEwMDYxMjdlNWVjIn0=",
         isFeatured: true
       },
       {
@@ -485,6 +491,8 @@ export class MemStorage implements IStorage {
         hostId: 4,
         hostName: "Emma",
         hostImage: "https://randomuser.me/api/portraits/women/22.jpg",
+        bookingWidgetUrl: "https://booking.hospitable.com/widget/55ea1cea-3c99-40f7-b98b-3de392f74a36/1080590",
+        reviewWidgetCode: "eyJwIjoiNjVlMGZiNTg5MjBlYWEwMDYxMjdlNWVjIn0=",
         isFeatured: true
       },
       // More NYC properties for search results
@@ -506,6 +514,8 @@ export class MemStorage implements IStorage {
         hostId: 2,
         hostName: "Sarah",
         hostImage: "https://randomuser.me/api/portraits/women/45.jpg",
+        bookingWidgetUrl: "https://booking.hospitable.com/widget/55ea1cea-3c99-40f7-b98b-3de392f74a36/1080592",
+        reviewWidgetCode: "eyJwIjoiNjVlMGZiNTg5MjBlYWEwMDYxMjdlNWVlIn0=",
         isFeatured: false
       },
       {
@@ -526,6 +536,8 @@ export class MemStorage implements IStorage {
         hostId: 3,
         hostName: "David",
         hostImage: "https://randomuser.me/api/portraits/men/67.jpg",
+        bookingWidgetUrl: "https://booking.hospitable.com/widget/55ea1cea-3c99-40f7-b98b-3de392f74a36/1080593",
+        reviewWidgetCode: "eyJwIjoiNjVlMGZiNTg5MjBlYWEwMDYxMjdlNWVmIn0=",
         isFeatured: false
       }
     ];

@@ -264,7 +264,7 @@ const PropertyDetail: React.FC = () => {
             {/* Reviews Section with Revyoos Widget */}
             <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
               <h2 className="text-xl font-bold mb-6">Guest Reviews</h2>
-              <RevyoosWidget className="w-full" />
+              <RevyoosWidget className="w-full" widgetCode={property.reviewWidgetCode || undefined} />
             </div>
 
             {/* FAQ Section */}
@@ -324,57 +324,18 @@ const PropertyDetail: React.FC = () => {
           <div className="lg:col-span-1">
             <div className="sticky top-24">
               <div className="bg-white p-6 rounded-lg shadow-sm mb-4">
-                <h3 className="text-xl font-bold mb-6">Add dates for prices</h3>
+                <h3 className="text-xl font-bold mb-6">Booking</h3>
                 
-                {/* Booking Form */}
-                <form>
-                  <div className="border border-gray-300 rounded-lg mb-4 overflow-hidden">
-                    <div className="grid grid-cols-2">
-                      <div className="p-3 border-r border-b border-gray-300">
-                        <Label className="block text-xs uppercase font-medium text-gray-700 mb-1">Check-in</Label>
-                        <Input 
-                          type="text" 
-                          placeholder="Add date" 
-                          value={checkIn}
-                          onChange={(e) => setCheckIn(e.target.value)}
-                          className="w-full border-none p-0 focus:ring-0 text-gray-900" 
-                        />
-                      </div>
-                      <div className="p-3 border-b border-gray-300">
-                        <Label className="block text-xs uppercase font-medium text-gray-700 mb-1">Checkout</Label>
-                        <Input 
-                          type="text" 
-                          placeholder="Add date"
-                          value={checkOut}
-                          onChange={(e) => setCheckOut(e.target.value)}
-                          className="w-full border-none p-0 focus:ring-0 text-gray-900" 
-                        />
-                      </div>
-                      <div className="p-3 col-span-2">
-                        <Label className="block text-xs uppercase font-medium text-gray-700 mb-1">Guests</Label>
-                        <Select value={guests} onValueChange={setGuests}>
-                          <SelectTrigger className="w-full border-none p-0 focus:ring-0 text-gray-900 h-auto shadow-none">
-                            <SelectValue placeholder="1 guest" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="1 guest">1 guest</SelectItem>
-                            <SelectItem value="2 guests">2 guests</SelectItem>
-                            <SelectItem value="3 guests">3 guests</SelectItem>
-                            <SelectItem value="4 guests">4 guests</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <Button
-                    type="button"
-                    onClick={handleBooking}
-                    className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3 rounded-lg transition-colors mb-4"
-                  >
-                    Check availability
-                  </Button>
-                </form>
+                {/* Booking Widget Iframe */}
+                <div className="booking-widget-container">
+                  <iframe 
+                    id="booking-iframe" 
+                    sandbox="allow-top-navigation allow-scripts allow-same-origin" 
+                    style={{ width: '100%', height: '500px' }} 
+                    frameBorder="0" 
+                    src={property.bookingWidgetUrl || "https://booking.hospitable.com/widget/55ea1cea-3c99-40f7-b98b-3de392f74a36/1080590"}
+                  ></iframe>
+                </div>
               </div>
               
               <div className="bg-white p-4 rounded-lg shadow-sm mb-4">

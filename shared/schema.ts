@@ -34,6 +34,8 @@ export const properties = pgTable("properties", {
   hostId: integer("host_id").notNull(),
   hostName: text("host_name").notNull(),
   hostImage: text("host_image"),
+  bookingWidgetUrl: text("booking_widget_url"), // URL for property-specific booking widget
+  reviewWidgetCode: text("review_widget_code"), // Widget code for Revyoos
   isFeatured: boolean("is_featured").default(false),
   createdAt: timestamp("created_at").defaultNow(),
 });

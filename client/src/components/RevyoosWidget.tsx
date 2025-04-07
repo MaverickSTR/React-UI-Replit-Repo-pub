@@ -1,41 +1,62 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 interface RevyoosWidgetProps {
   className?: string;
+  widgetCode?: string;
 }
 
-const RevyoosWidget: React.FC<RevyoosWidgetProps> = ({ className = "" }) => {
+const RevyoosWidget: React.FC<RevyoosWidgetProps> = ({ className, widgetCode }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const scriptRef = useRef<HTMLScriptElement | null>(null);
+
   useEffect(() => {
-    // Create and append the Revyoos script to the component
+    if (!widgetCode || !containerRef.current) return;
+    
+    // Remove any existing widget and script
+    if (containerRef.current) {
+      const existingWidget = containerRef.current.querySelector('.revyoos-embed-widget');
+      if (existingWidget) {
+        existingWidget.remove();
+      }
+      
+      if (scriptRef.current) {
+        document.body.removeChild(scriptRef.current);
+        scriptRef.current = null;
+      }
+    }
+    
+    // Create new widget element
+    const widgetElement = document.createElement('div');
+    widgetElement.className = 'revyoos-embed-widget';
+    widgetElement.setAttribute('data-revyoos-embed', widgetCode);
+    containerRef.current.appendChild(widgetElement);
+    
+    // Create and add script
     const script = document.createElement('script');
     script.defer = true;
     script.type = 'application/javascript';
     script.src = 'https://www.revyoos.com/js/widgetBuilder.js';
-    script.dataset.revyoosWidget = 'eyJwIjoiNjVlMGZiNTg5MjBlYWEwMDYxMjdlNWVjIn0=';
+    script.setAttribute('data-revyoos-widget', widgetCode);
     
-    // Append script to current component
-    const widgetContainer = document.getElementById('revyoos-widget-container');
-    if (widgetContainer) {
-      widgetContainer.appendChild(script);
-    }
+    document.body.appendChild(script);
+    scriptRef.current = script;
     
-    // Clean up on component unmount
+    // Cleanup function
     return () => {
-      if (widgetContainer && script.parentNode === widgetContainer) {
-        widgetContainer.removeChild(script);
+      if (scriptRef.current) {
+        document.body.removeChild(scriptRef.current);
+        scriptRef.current = null;
       }
     };
-  }, []);
+  }, [widgetCode]);
 
   return (
-    <div className={`revyoos-widget-container ${className}`}>
-      <div 
-        id="revyoos-widget-container" 
-        className="w-full min-h-[200px]"
-      >
-        {/* The Revyoos widget will be inserted here by the script */}
-        <div className="revyoos-embed-widget" data-revyoos-embed="eyJwIjoiNjVlMGZiNTg5MjBlYWEwMDYxMjdlNWVjIn0="></div>
-      </div>
+    <div ref={containerRef} className={className}>
+      {!widgetCode && (
+        <div className="text-center p-8 border rounded-md bg-gray-50">
+          <p className="text-gray-500">Review widget not configured for this property</p>
+        </div>
+      )}
     </div>
   );
 };

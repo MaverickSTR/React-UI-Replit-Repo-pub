@@ -70,6 +70,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ message: "Failed to create property" });
     }
   });
+  
+  app.patch("/api/properties/:id", async (req: Request, res: Response) => {
+    try {
+      const id = parseInt(req.params.id);
+      const propertyData = req.body;
+      
+      // Ensure the property exists
+      const existingProperty = await storage.getProperty(id);
+      if (!existingProperty) {
+        return res.status(404).json({ message: "Property not found" });
+      }
+      
+      const updatedProperty = await storage.updateProperty(id, propertyData);
+      res.json(updatedProperty);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to update property" });
+    }
+  });
 
   // Cities API
   app.get("/api/cities", async (req: Request, res: Response) => {
