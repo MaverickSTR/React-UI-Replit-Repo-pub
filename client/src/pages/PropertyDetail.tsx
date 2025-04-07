@@ -261,7 +261,7 @@ const PropertyDetail: React.FC = () => {
 
 
 
-            {/* Reviews */}
+            {/* Reviews Section with Revyoos Widget */}
             <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
               <div className="flex items-center mb-6">
                 <Star className="h-5 w-5 text-amber-500 fill-current mr-2" />
@@ -270,99 +270,7 @@ const PropertyDetail: React.FC = () => {
                 <span className="text-gray-600">85 reviews</span>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-12 mb-6">
-                <div className="flex items-center">
-                  <span className="w-32 text-sm text-gray-600">Cleanliness</span>
-                  <div className="flex-1 bg-gray-200 h-1 rounded-full">
-                    <div className="bg-primary h-1 rounded-full" style={{ width: "98%" }}></div>
-                  </div>
-                  <span className="ml-2 text-sm font-medium">4.9</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="w-32 text-sm text-gray-600">Accuracy</span>
-                  <div className="flex-1 bg-gray-200 h-1 rounded-full">
-                    <div className="bg-primary h-1 rounded-full" style={{ width: "96%" }}></div>
-                  </div>
-                  <span className="ml-2 text-sm font-medium">4.8</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="w-32 text-sm text-gray-600">Communication</span>
-                  <div className="flex-1 bg-gray-200 h-1 rounded-full">
-                    <div className="bg-primary h-1 rounded-full" style={{ width: "100%" }}></div>
-                  </div>
-                  <span className="ml-2 text-sm font-medium">5.0</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="w-32 text-sm text-gray-600">Location</span>
-                  <div className="flex-1 bg-gray-200 h-1 rounded-full">
-                    <div className="bg-primary h-1 rounded-full" style={{ width: "94%" }}></div>
-                  </div>
-                  <span className="ml-2 text-sm font-medium">4.7</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="w-32 text-sm text-gray-600">Check-in</span>
-                  <div className="flex-1 bg-gray-200 h-1 rounded-full">
-                    <div className="bg-primary h-1 rounded-full" style={{ width: "98%" }}></div>
-                  </div>
-                  <span className="ml-2 text-sm font-medium">4.9</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="w-32 text-sm text-gray-600">Value</span>
-                  <div className="flex-1 bg-gray-200 h-1 rounded-full">
-                    <div className="bg-primary h-1 rounded-full" style={{ width: "92%" }}></div>
-                  </div>
-                  <span className="ml-2 text-sm font-medium">4.6</span>
-                </div>
-              </div>
-
-              {/* Review list */}
-              <div className="space-y-6">
-                {isLoadingReviews ? (
-                  <div className="animate-pulse space-y-6">
-                    {[1, 2, 3].map((i) => (
-                      <div key={i} className="border-b border-gray-200 pb-6">
-                        <div className="flex items-center mb-3">
-                          <div className="w-10 h-10 rounded-full bg-gray-200 mr-3"></div>
-                          <div>
-                            <div className="h-4 bg-gray-200 rounded w-24 mb-1"></div>
-                            <div className="h-3 bg-gray-200 rounded w-16"></div>
-                          </div>
-                        </div>
-                        <div className="h-4 bg-gray-200 rounded w-full mb-2"></div>
-                        <div className="h-4 bg-gray-200 rounded w-full mb-2"></div>
-                        <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  reviews?.map((review) => (
-                    <div key={review.id} className="border-b border-gray-200 pb-6">
-                      <div className="flex items-center mb-3">
-                        <img 
-                          src={review.userImage || 'https://randomuser.me/api/portraits/women/45.jpg'} 
-                          alt={review.userName} 
-                          className="w-10 h-10 rounded-full mr-3" 
-                        />
-                        <div>
-                          <p className="font-medium">{review.userName}</p>
-                          <p className="text-sm text-gray-500">{review.date ? formatDate(review.date) : ''}</p>
-                        </div>
-                      </div>
-                      <p className="text-gray-600">{review.comment}</p>
-                    </div>
-                  ))
-                )}
-              </div>
-              
-              <Button variant="outline" className="mt-6 border border-gray-300 hover:border-gray-800 bg-white text-gray-800 font-medium px-6 py-2 rounded-full transition-colors">
-                Show all reviews
-              </Button>
-              
-              {/* Revyoos Widget */}
-              <div className="mt-8 pt-6 border-t border-gray-200">
-                <h3 className="text-lg font-semibold mb-4">Verified Reviews from Revyoos</h3>
-                <RevyoosWidget className="w-full" />
-              </div>
+              <RevyoosWidget className="w-full" />
             </div>
 
             {/* FAQ Section */}
