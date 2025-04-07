@@ -22,7 +22,7 @@ import {
   Heart,
   ChevronRight
 } from 'lucide-react';
-import Breadcrumb from '@/components/ui/Breadcrumb';
+import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -199,33 +199,32 @@ const PropertyDetail: React.FC = () => {
           </div>
         </div>
 
-        {/* Host Info - Moved outside the grid to ensure it's always below the photos */}
-        <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
-          <div className="flex justify-between items-start">
-            <div>
-              <h2 className="text-xl font-bold mb-2">Entire {property.bedrooms === 0 ? 'studio' : 'apartment'} hosted by {property.hostName}</h2>
-              <ul className="flex flex-wrap text-gray-600 text-sm">
-                <li className="flex items-center mr-4">
-                  <UserCircle2 className="h-4 w-4 mr-2" /> {property.maxGuests} guests
-                </li>
-                <li className="flex items-center mr-4">
-                  <DoorOpen className="h-4 w-4 mr-2" /> {property.bedrooms} {property.bedrooms === 1 ? 'bedroom' : 'bedrooms'}
-                </li>
-                <li className="flex items-center mr-4">
-                  <Bed className="h-4 w-4 mr-2" /> {property.bedrooms} {property.bedrooms === 1 ? 'bed' : 'beds'}
-                </li>
-                <li className="flex items-center">
-                  <Bath className="h-4 w-4 mr-2" /> {property.bathrooms} {property.bathrooms === 1 ? 'bath' : 'baths'}
-                </li>
-              </ul>
-            </div>
-            <img src={property.hostImage || 'https://randomuser.me/api/portraits/men/32.jpg'} alt={property.hostName} className="w-12 h-12 rounded-full" />
-          </div>
-        </div>
-
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Property Details Column */}
+          {/* Left column for property details */}
           <div className="lg:col-span-2">
+            {/* Host Info */}
+            <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
+              <div className="flex justify-between items-start">
+                <div>
+                  <h2 className="text-xl font-bold mb-2">Entire {property.bedrooms === 0 ? 'studio' : 'apartment'} hosted by {property.hostName}</h2>
+                  <ul className="flex flex-wrap text-gray-600 text-sm">
+                    <li className="flex items-center mr-4">
+                      <UserCircle2 className="h-4 w-4 mr-2" /> {property.maxGuests} guests
+                    </li>
+                    <li className="flex items-center mr-4">
+                      <DoorOpen className="h-4 w-4 mr-2" /> {property.bedrooms} {property.bedrooms === 1 ? 'bedroom' : 'bedrooms'}
+                    </li>
+                    <li className="flex items-center mr-4">
+                      <Bed className="h-4 w-4 mr-2" /> {property.bedrooms} {property.bedrooms === 1 ? 'bed' : 'beds'}
+                    </li>
+                    <li className="flex items-center">
+                      <Bath className="h-4 w-4 mr-2" /> {property.bathrooms} {property.bathrooms === 1 ? 'bath' : 'baths'}
+                    </li>
+                  </ul>
+                </div>
+                <img src={property.hostImage || 'https://randomuser.me/api/portraits/men/32.jpg'} alt={property.hostName} className="w-12 h-12 rounded-full" />
+              </div>
+            </div>
 
             {/* Property Description */}
             <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
@@ -350,7 +349,7 @@ const PropertyDetail: React.FC = () => {
                         />
                         <div>
                           <p className="font-medium">{review.userName}</p>
-                          <p className="text-sm text-gray-500">{formatDate(review.date)}</p>
+                          <p className="text-sm text-gray-500">{review.date ? formatDate(review.date) : ''}</p>
                         </div>
                       </div>
                       <p className="text-gray-600">{review.comment}</p>
