@@ -26,6 +26,12 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Label } from '@/components/ui/label';
+import { 
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Card, CardContent } from '@/components/ui/card';
 import { formatPrice, formatDate } from '@/lib/utils';
 import { Meta, PropertyStructuredData } from '@/lib/seo';
@@ -366,6 +372,58 @@ const PropertyDetail: React.FC = () => {
               <Button variant="outline" className="mt-6 border border-gray-800 hover:bg-gray-100 text-gray-800 font-medium px-6 py-2 rounded-lg transition-colors">
                 Show all reviews
               </Button>
+            </div>
+
+            {/* FAQ Section */}
+            <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
+              <h2 className="text-xl font-bold mb-6">Frequently asked questions</h2>
+              
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="item-1">
+                  <AccordionTrigger className="text-lg font-medium">
+                    What are the check-in and check-out times?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-gray-600">
+                    Check-in is after 3:00 PM and check-out is before 11:00 AM. Self check-in with a keypad is available. We'll send you the code 24 hours before your arrival.
+                  </AccordionContent>
+                </AccordionItem>
+                
+                <AccordionItem value="item-2">
+                  <AccordionTrigger className="text-lg font-medium">
+                    Is parking available?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-gray-600">
+                    Paid parking garage is available nearby for $25 per day. Street parking is limited but available. We recommend using public transportation as the subway station is only a 5-minute walk away.
+                  </AccordionContent>
+                </AccordionItem>
+                
+                <AccordionItem value="item-3">
+                  <AccordionTrigger className="text-lg font-medium">
+                    Is there a security deposit?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-gray-600">
+                    Yes, we collect a $200 refundable security deposit that will be returned within 7 days after checkout if no damages occur. The deposit is processed through our secure payment system.
+                  </AccordionContent>
+                </AccordionItem>
+                
+                <AccordionItem value="item-4">
+                  <AccordionTrigger className="text-lg font-medium">
+                    Is the property suitable for remote work?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-gray-600">
+                    Absolutely! We offer high-speed fiber internet (300 Mbps) and a dedicated workspace with a comfortable desk and chair. The apartment has multiple outlets and USB charging ports throughout.
+                  </AccordionContent>
+                </AccordionItem>
+                
+                <AccordionItem value="item-5">
+                  <AccordionTrigger className="text-lg font-medium">
+                    Are pets allowed?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-gray-600">
+                    We don't allow pets in this property, but service animals are welcome as required by law. There are several pet-friendly parks within walking distance if you're visiting with a local friend who has pets.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
             </div>
           </div>
 
