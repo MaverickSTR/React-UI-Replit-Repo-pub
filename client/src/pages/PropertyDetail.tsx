@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useRoute } from 'wouter';
 import { useQuery } from '@tanstack/react-query';
 import { getProperty, getPropertyReviews } from '@/lib/api';
+import RevyoosWidget from '@/components/RevyoosWidget';
 import { 
   Wifi, 
   Snowflake, 
@@ -372,6 +373,20 @@ const PropertyDetail: React.FC = () => {
               <Button variant="outline" className="mt-6 border border-gray-800 hover:bg-gray-100 text-gray-800 font-medium px-6 py-2 rounded-lg transition-colors">
                 Show all reviews
               </Button>
+              
+              {/* Revyoos Widget */}
+              <div className="mt-8 pt-6 border-t border-gray-200">
+                <h3 className="text-lg font-semibold mb-4">Verified Reviews from Revyoos</h3>
+                <RevyoosWidget 
+                  propertyId={property.id}
+                  propertyName={property.name}
+                  location={`${property.location}, ${property.city}, ${property.country}`}
+                  apiKey="REVYOOS_API_KEY" 
+                  theme="light"
+                  language="en"
+                  widget="default"
+                />
+              </div>
             </div>
 
             {/* FAQ Section */}
