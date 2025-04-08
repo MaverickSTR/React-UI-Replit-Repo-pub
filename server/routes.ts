@@ -8,6 +8,7 @@ import {
   insertFavoriteSchema 
 } from "@shared/schema";
 import { z } from "zod";
+import { createServerApiClient } from "../client/src/lib/hospitable/server-utils";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Properties API
@@ -239,6 +240,128 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({ isFavorite });
     } catch (error) {
       res.status(500).json({ message: "Failed to check favorite status" });
+    }
+  });
+
+  // Hospitable API proxy routes
+  const hospitable = {
+    properties: '/api/hospitable/properties',
+    property: '/api/hospitable/properties/:id',
+    customers: '/api/hospitable/customers',
+    customer: '/api/hospitable/customers/:id',
+    bookings: '/api/hospitable/bookings',
+    booking: '/api/hospitable/bookings/:id',
+  };
+
+  // Middleware to ensure Hospitable API token is set
+  const requireHospitableToken = (req: Request, res: Response, next: Function) => {
+    try {
+      // This will throw if token is not available
+      createServerApiClient();
+      next();
+    } catch (error: any) {
+      res.status(500).json({ 
+        message: "Hospitable API connection error", 
+        error: error.message || "Missing API token"
+      });
+    }
+  };
+
+  // Apply middleware to all Hospitable routes
+  app.use([
+    hospitable.properties, 
+    hospitable.property,
+    hospitable.customers,
+    hospitable.customer,
+    hospitable.bookings,
+    hospitable.booking
+  ], requireHospitableToken);
+
+  // Hospitable Properties
+  app.get(hospitable.properties, async (req: Request, res: Response) => {
+    try {
+      const api = createServerApiClient();
+      const properties = await api.getProperties();
+      res.json(properties);
+    } catch (error: any) {
+      res.status(500).json({ message: "Failed to fetch properties from Hospitable", error: error.message });
+    }
+  });
+
+  app.get(hospitable.property, async (req: Request, res: Response) => {
+    try {
+      const api = createServerApiClient();
+      const property = await api.getProperty(req.params.id);
+      res.json(property);
+    } catch (error: any) {
+      res.status(500).json({ message: "Failed to fetch property from Hospitable", error: error.message });
+    }
+  });
+
+  app.post(hospitable.properties, async (req: Request, res: Response) => {
+    try {
+      const api = createServerApiClient();
+      const property = await api.createProperty(req.body);
+      res.status(201).json(property);
+    } catch (error: any) {
+      res.status(500).json({ message: "Failed to create property in Hospitable", error: error.message });
+    }
+  });
+
+  // Hospitable Customers
+  app.get(hospitable.customers, async (req: Request, res: Response) => {
+    try {
+      const api = createServerApiClient();
+      const customers = await api.getCustomers();
+      res.json(customers);
+    } catch (error: any) {
+      res.status(500).json({ message: "Failed to fetch customers from Hospitable", error: error.message });
+    }
+  });
+
+  app.get(hospitable.customer, async (req: Request, res: Response) => {
+    try {
+      const api = createServerApiClient();
+      const customer = await api.getCustomer(req.params.id);
+      res.json(customer);
+    } catch (error: any) {
+      res.status(500).json({ message: "Failed to fetch customer from Hospitable", error: error.message });
+    }
+  });
+
+  // Hospitable Bookings
+  app.get(hospitable.bookings, async (req: Request, res: Response) => {
+    try {
+      const api = createServerApiClient();
+      const filters = {
+        propertyId: req.query.propertyId as string,
+        customerId: req.query.customerId as string
+      };
+      const bookings = await api.getBookings(filters);
+      res.json(bookings);
+    } catch (error: any) {
+      res.status(500).json({ message: "Failed to fetch bookings from Hospitable", error: error.message });
+    }
+  });
+
+  app.post(hospitable.bookings, async (req: Request, res: Response) => {
+    try {
+      const api = createServerApiClient();
+      const booking = await api.createBooking(req.body);
+      res.status(201).json(booking);
+    } catch (error: any) {
+      res.status(500).json({ message: "Failed to create booking in Hospitable", error: error.message });
+    }
+  });
+
+  app.patch(`${hospitable.booking}/status`, async (req: Request, res: Response) => {
+    try {
+      const api = createServerApiClient();
+      const { status } = req.body;
+      const booking = await api.updateBookingStatus(req.params.id, status);
+      res.json(booking);
+    } catch (error: any) {
+      res.status(500).json({ message: "Failed to update booking status in Hospitable", error: error.message });
     }
   });
 
