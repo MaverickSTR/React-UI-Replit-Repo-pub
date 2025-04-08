@@ -14,7 +14,7 @@ export const getEnv = (key: string, defaultValue: string = ''): string => {
 };
 
 export const HOSPITABLE_CONFIG = {
-  API_BASE_URL: getEnv('VITE_HOSPITABLE_API_URL', 'https://api.hospitable.com'),
+  API_BASE_URL: getEnv('VITE_HOSPITABLE_API_URL', 'https://connect.hospitable.com/api/v1'),
   API_VERSION: '2024-01',
   DEFAULT_CACHE_DURATION: 60, // seconds
 };

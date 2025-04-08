@@ -42,6 +42,9 @@ const Navbar: React.FC = () => {
             <Link href="/search" className="text-gray-600 hover:text-primary transition-colors">
               Destinations
             </Link>
+            <Link href="/api-properties" className="text-gray-600 hover:text-primary transition-colors">
+              API Properties
+            </Link>
             <Link href="#" className="text-gray-600 hover:text-primary transition-colors">
               For Hosts
             </Link>
@@ -93,6 +96,9 @@ const Navbar: React.FC = () => {
                   </Link>
                   <Link href="/search" className="block py-2 px-4 hover:bg-gray-100 rounded-md">
                     Destinations
+                  </Link>
+                  <Link href="/api-properties" className="block py-2 px-4 hover:bg-gray-100 rounded-md">
+                    API Properties
                   </Link>
                   <Link href="#" className="block py-2 px-4 hover:bg-gray-100 rounded-md">
                     For Hosts

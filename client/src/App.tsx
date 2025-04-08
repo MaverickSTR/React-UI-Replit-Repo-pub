@@ -8,6 +8,8 @@ import PropertyDetail from "@/pages/PropertyDetail";
 import SearchResults from "@/pages/SearchResults";
 import CityPage from "@/pages/CityPage";
 import Admin from "@/pages/Admin";
+import ApiPropertiesPage from "@/pages/ApiPropertiesPage";
+import ApiPropertyDetailPage from "@/pages/ApiPropertyDetailPage";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
@@ -22,6 +24,8 @@ function Router() {
           <Route path="/search" component={SearchResults} />
           <Route path="/city/:name" component={CityPage} />
           <Route path="/admin" component={Admin} />
+          <Route path="/api-properties" component={ApiPropertiesPage} />
+          <Route path="/api-properties/:id" component={ApiPropertyDetailPage} />
           <Route component={NotFound} />
         </Switch>
       </main>
