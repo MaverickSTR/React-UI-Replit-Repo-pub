@@ -219,7 +219,7 @@ const PropertyDetail: React.FC = () => {
 
         {/* Property Gallery - Full Width */}
         <div className="mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 h-[450px]">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 h-[400px]">
             {/* Main large image */}
             <div className="md:col-span-2 md:row-span-2 h-full">
               <img 
@@ -230,14 +230,14 @@ const PropertyDetail: React.FC = () => {
             </div>
             
             {/* Additional images - first two on top row */}
-            <div>
+            <div className="h-[198px]">
               <img 
                 src={property.additionalImages?.[0] || 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=871&q=80'} 
                 alt={`${property.name} - view 2`}
                 className="w-full h-full object-cover rounded-tr-lg" 
               />
             </div>
-            <div>
+            <div className="h-[198px]">
               <img 
                 src={property.additionalImages?.[1] || 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=870&q=80'} 
                 alt={`${property.name} - view 3`}
@@ -246,14 +246,14 @@ const PropertyDetail: React.FC = () => {
             </div>
             
             {/* Additional images - bottom row */}
-            <div>
+            <div className="h-[198px]">
               <img 
                 src={property.additionalImages?.[2] || 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=867&q=80'} 
                 alt={`${property.name} - view 4`}
                 className="w-full h-full object-cover rounded-bl-lg" 
               />
             </div>
-            <div className="relative">
+            <div className="relative h-[198px]">
               <img 
                 src={property.additionalImages?.[3] || 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=870&q=80'} 
                 alt={`${property.name} - view 5`}
