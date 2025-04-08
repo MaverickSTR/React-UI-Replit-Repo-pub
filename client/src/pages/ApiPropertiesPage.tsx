@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import HospitablePropertiesList from '@/components/HospitablePropertiesList';
+import HospitableApiSetupInfo from '@/components/HospitableApiSetupInfo';
 import { Button } from '@/components/ui/button';
 import { Link } from 'wouter';
+import { useProperties } from '@/lib/hospitable';
 
 export default function ApiPropertiesPage() {
+  const { error } = useProperties();
+  const [showSetupInfo, setShowSetupInfo] = useState(false);
+  
+  // Check if we have an API error and show the setup info
+  useEffect(() => {
+    if (error) {
+      setShowSetupInfo(true);
+    } else {
+      setShowSetupInfo(false);
+    }
+  }, [error]);
+
   return (
     <div className="container py-10 max-w-7xl mx-auto">
       <div className="mb-8">
@@ -16,6 +30,7 @@ export default function ApiPropertiesPage() {
         </p>
       </div>
 
+      {showSetupInfo && <HospitableApiSetupInfo />}
       <HospitablePropertiesList />
     </div>
   );

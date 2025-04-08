@@ -281,10 +281,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get(hospitable.properties, async (req: Request, res: Response) => {
     try {
       const api = createServerApiClient();
+      
+      console.log(`Attempting to fetch properties from Hospitable API...`);
       const properties = await api.getProperties();
+      console.log(`Successfully fetched ${properties?.length || 0} properties from Hospitable API`);
+      
       res.json(properties);
     } catch (error: any) {
-      res.status(500).json({ message: "Failed to fetch properties from Hospitable", error: error.message });
+      console.error('Hospitable API Error:', error);
+      res.status(500).json({ 
+        message: "Failed to fetch properties from Hospitable", 
+        error: error.message,
+        details: error.code ? { code: error.code, status: error.status } : undefined
+      });
     }
   });
 

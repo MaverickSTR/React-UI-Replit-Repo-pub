@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useProperties } from '@/lib/hospitable';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Link } from 'wouter';
-import { MapPin, Bed, Bath, Users, Star } from 'lucide-react';
+import { MapPin, Bed, Bath, Users, Star, AlertCircle } from 'lucide-react';
 
 export default function HospitablePropertiesList() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -19,21 +19,7 @@ export default function HospitablePropertiesList() {
     property.address?.state?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  if (error) {
-    return (
-      <Card className="bg-red-50 border-red-200">
-        <CardContent className="p-6">
-          <h3 className="text-red-700 text-lg font-semibold">Error Loading Properties</h3>
-          <p className="text-red-600 mt-2">
-            {error instanceof Error ? error.message : 'Failed to fetch properties from Hospitable API'}
-          </p>
-          <p className="text-sm mt-4 text-red-500">
-            Make sure the HOSPITABLE_PLATFORM_TOKEN environment variable is set correctly.
-          </p>
-        </CardContent>
-      </Card>
-    );
-  }
+  // We'll handle the error display in the parent component with HospitableApiSetupInfo
 
   return (
     <div>

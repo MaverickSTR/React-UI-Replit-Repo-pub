@@ -24,7 +24,7 @@ export class HospitableAPI {
   }
 
   private async request<T>(path: string, options: HospitableRequestOptions = {}): Promise<HospitableResponse<T>> {
-    const url = new URL(`/api/v1${path.startsWith('/') ? path : `/${path}`}`, this.baseUrl);
+    const url = new URL(`${path.startsWith('/') ? path : `/${path}`}`, this.baseUrl);
     
     try {
       const fetchOptions: RequestInit = {
@@ -37,15 +37,24 @@ export class HospitableAPI {
         cache: options.cache ?? this.defaultCache,
       };
 
+      console.log(`Fetching from: ${url.toString()}`);
+      
       const response = await fetch(url.toString(), fetchOptions);
 
       if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || `HTTP error! status: ${response.status}`);
+        let errorData;
+        try {
+          errorData = await response.json();
+        } catch (e) {
+          errorData = { message: `HTTP error! status: ${response.status}` };
+        }
+        
+        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
       }
 
       return await response.json();
     } catch (error: any) {
+      console.error('API request failed:', error);
       const hospError: HospitableError = {
         name: error.name || "APIError",
         message: error.message || "Unknown API error",
