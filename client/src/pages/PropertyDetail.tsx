@@ -155,9 +155,13 @@ const PropertyDetail: React.FC = () => {
   };
   
   // Breadcrumb items
+  // Extract state from location (assuming format like "Beverly Hills, CA")
+  const locationParts = property.location.split(',');
+  const state = locationParts.length > 1 ? locationParts[1].trim() : 'CA';
+  
   const breadcrumbItems = [
     { label: 'Home', href: '/' },
-    { label: property.country, href: `/search?q=${property.country}` },
+    { label: state, href: `/search?q=${state}` },
     { label: property.city, href: `/city/${property.city}` },
     { label: property.name }
   ];
@@ -216,6 +220,7 @@ const PropertyDetail: React.FC = () => {
         {/* Property Gallery - Full Width */}
         <div className="mb-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-2 h-[450px]">
+            {/* Main large image */}
             <div className="md:col-span-2 md:row-span-2 h-full">
               <img 
                 src={property.imageUrl} 
@@ -224,25 +229,42 @@ const PropertyDetail: React.FC = () => {
               />
             </div>
             
-            {property.additionalImages?.slice(0, 4).map((image, index) => (
-              <div key={index} className={`${index === 3 ? 'relative' : ''}`}>
-                <img 
-                  src={image} 
-                  alt={`${property.name} - view ${index + 2}`}
-                  className={`w-full h-full object-cover 
-                    ${index === 0 ? 'rounded-tr-lg' : ''} 
-                    ${index === 2 ? 'rounded-bl-lg' : ''} 
-                    ${index === 3 ? 'rounded-br-lg' : ''}`}
-                />
-                {index === 3 && (
-                  <button className="absolute right-4 bottom-4 bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-800 px-4 py-2 rounded-lg shadow-sm transition-all">
-                    <span className="flex items-center">
-                      <Tv className="mr-2 h-4 w-4" /> Show all photos
-                    </span>
-                  </button>
-                )}
-              </div>
-            ))}
+            {/* Additional images - first two on top row */}
+            <div>
+              <img 
+                src={property.additionalImages?.[0] || 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=871&q=80'} 
+                alt={`${property.name} - view 2`}
+                className="w-full h-full object-cover rounded-tr-lg" 
+              />
+            </div>
+            <div>
+              <img 
+                src={property.additionalImages?.[1] || 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=870&q=80'} 
+                alt={`${property.name} - view 3`}
+                className="w-full h-full object-cover" 
+              />
+            </div>
+            
+            {/* Additional images - bottom row */}
+            <div>
+              <img 
+                src={property.additionalImages?.[2] || 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=867&q=80'} 
+                alt={`${property.name} - view 4`}
+                className="w-full h-full object-cover rounded-bl-lg" 
+              />
+            </div>
+            <div className="relative">
+              <img 
+                src={property.additionalImages?.[3] || 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=870&q=80'} 
+                alt={`${property.name} - view 5`}
+                className="w-full h-full object-cover rounded-br-lg" 
+              />
+              <button className="absolute right-4 bottom-4 bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-800 px-4 py-2 rounded-lg shadow-sm transition-all">
+                <span className="flex items-center">
+                  <Tv className="mr-2 h-4 w-4" /> Show all photos
+                </span>
+              </button>
+            </div>
           </div>
         </div>
 
