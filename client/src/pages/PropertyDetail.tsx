@@ -280,7 +280,24 @@ const PropertyDetail: React.FC = () => {
                   {property.type}
                 </Badge>
               </h2>
-              <p className="text-gray-600 mb-4">{property.maxGuests} guests · {property.bedrooms} {property.bedrooms === 1 ? 'bedroom' : 'bedrooms'} · {property.bedrooms} {property.bedrooms === 1 ? 'bed' : 'beds'} · {property.bathrooms} {property.bathrooms === 1 ? 'bath' : 'baths'}</p>
+              <p className="text-gray-600 mb-4 flex items-center flex-wrap gap-3">
+                <span className="flex items-center">
+                  <UserCircle2 className="h-4 w-4 mr-1.5 text-gray-500" />
+                  {property.maxGuests} guests
+                </span>
+                <span className="flex items-center">
+                  <DoorOpen className="h-4 w-4 mr-1.5 text-gray-500" />
+                  {property.bedrooms} {property.bedrooms === 1 ? 'bedroom' : 'bedrooms'}
+                </span>
+                <span className="flex items-center">
+                  <Bed className="h-4 w-4 mr-1.5 text-gray-500" />
+                  {property.bedrooms} {property.bedrooms === 1 ? 'bed' : 'beds'}
+                </span>
+                <span className="flex items-center">
+                  <Bath className="h-4 w-4 mr-1.5 text-gray-500" />
+                  {property.bathrooms} {property.bathrooms === 1 ? 'bath' : 'baths'}
+                </span>
+              </p>
               
               <div className="flex items-center mb-6">
                 <div className="flex items-center bg-amber-50 px-3 py-2 rounded-lg border border-amber-200 mr-4">
