@@ -245,51 +245,53 @@ const PropertyDetail: React.FC = () => {
           </div>
           
           {/* Desktop view - grid gallery for medium screens and up */}
-          <div className="hidden md:grid md:grid-cols-4 gap-2 h-[400px]">
-            {/* Main large image */}
-            <div className="md:col-span-2 md:row-span-2 h-full">
-              <img 
-                src={property.imageUrl} 
-                alt={property.name}
-                className="w-full h-full object-cover rounded-tl-lg hover-scale transition-transform duration-700" 
-              />
-            </div>
-            
-            {/* Additional images - first two on top row */}
-            <div className="h-[198px] overflow-hidden">
-              <img 
-                src={property.additionalImages?.[0] || 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=871&q=80'} 
-                alt={`${property.name} - view 2`}
-                className="w-full h-full object-cover rounded-tr-lg hover-scale transition-transform duration-700" 
-              />
-            </div>
-            <div className="h-[198px] overflow-hidden">
-              <img 
-                src={property.additionalImages?.[1] || 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=870&q=80'} 
-                alt={`${property.name} - view 3`}
-                className="w-full h-full object-cover hover-scale transition-transform duration-700" 
-              />
-            </div>
-            
-            {/* Additional images - bottom row */}
-            <div className="h-[198px] overflow-hidden">
-              <img 
-                src={property.additionalImages?.[2] || 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=867&q=80'} 
-                alt={`${property.name} - view 4`}
-                className="w-full h-full object-cover rounded-bl-lg hover-scale transition-transform duration-700" 
-              />
-            </div>
-            <div className="relative h-[198px] overflow-hidden">
-              <img 
-                src={property.additionalImages?.[3] || 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=870&q=80'} 
-                alt={`${property.name} - view 5`}
-                className="w-full h-full object-cover rounded-br-lg hover-scale transition-transform duration-700" 
-              />
-              <button className="absolute right-4 bottom-4 bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-800 px-4 py-2 rounded-lg shadow-sm transition-all gallery-nav-btn pulse">
-                <span className="flex items-center">
-                  <Tv className="mr-2 h-4 w-4 icon-bounce" /> Show all photos
-                </span>
-              </button>
+          <div className="hidden md:block">
+            <div className="grid grid-cols-4 gap-2" style={{ height: '400px', maxHeight: '60vh' }}>
+              {/* Main large image */}
+              <div className="col-span-2 row-span-2 h-full">
+                <img 
+                  src={property.imageUrl} 
+                  alt={property.name}
+                  className="w-full h-full object-cover rounded-tl-lg hover-scale transition-transform duration-700" 
+                />
+              </div>
+              
+              {/* Additional images - first two on top row */}
+              <div className="h-full max-h-[198px] overflow-hidden">
+                <img 
+                  src={property.additionalImages?.[0] || 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=871&q=80'} 
+                  alt={`${property.name} - view 2`}
+                  className="w-full h-full object-cover rounded-tr-lg hover-scale transition-transform duration-700" 
+                />
+              </div>
+              <div className="h-full max-h-[198px] overflow-hidden">
+                <img 
+                  src={property.additionalImages?.[1] || 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=870&q=80'} 
+                  alt={`${property.name} - view 3`}
+                  className="w-full h-full object-cover hover-scale transition-transform duration-700" 
+                />
+              </div>
+              
+              {/* Additional images - bottom row */}
+              <div className="h-full max-h-[198px] overflow-hidden">
+                <img 
+                  src={property.additionalImages?.[2] || 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=867&q=80'} 
+                  alt={`${property.name} - view 4`}
+                  className="w-full h-full object-cover rounded-bl-lg hover-scale transition-transform duration-700" 
+                />
+              </div>
+              <div className="relative h-full max-h-[198px] overflow-hidden">
+                <img 
+                  src={property.additionalImages?.[3] || 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=870&q=80'} 
+                  alt={`${property.name} - view 5`}
+                  className="w-full h-full object-cover rounded-br-lg hover-scale transition-transform duration-700" 
+                />
+                <button className="absolute right-4 bottom-4 bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-800 px-4 py-2 rounded-lg shadow-sm transition-all gallery-nav-btn pulse">
+                  <span className="flex items-center">
+                    <Tv className="mr-2 h-4 w-4 icon-bounce" /> Show all photos
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
