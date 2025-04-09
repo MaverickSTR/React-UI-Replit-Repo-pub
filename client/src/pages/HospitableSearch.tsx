@@ -45,7 +45,18 @@ const HospitableSearch: React.FC = () => {
         <meta name="description" content="Find and book unique accommodations directly with hosts - no fees, no middlemen." />
       </Helmet>
 
-      <div ref={containerRef} className="w-full h-full min-h-screen"></div>
+      {/* 
+        Adding a small navbar at the top for better navigation experience
+        while keeping the main focus on the Hospitable widget 
+      */}
+      <div className="bg-white shadow-sm p-4">
+        <div className="container mx-auto flex items-center">
+          <a href="/" className="text-primary text-xl font-bold mr-8">StayDirectly</a>
+          <a href="/search" className="text-gray-600 hover:text-primary mr-4">All Properties</a>
+        </div>
+      </div>
+
+      <div ref={containerRef} className="w-full min-h-[calc(100vh-72px)]"></div>
     </div>
   );
 };
