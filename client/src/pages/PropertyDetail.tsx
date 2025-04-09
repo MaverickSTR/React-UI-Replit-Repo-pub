@@ -423,7 +423,18 @@ const PropertyDetail: React.FC = () => {
             <div className="bg-white p-6 rounded-lg shadow-sm mb-6 overflow-hidden">
               <h2 className="text-xl font-bold mb-6">Guest Reviews</h2>
               <div className="w-full overflow-x-hidden">
-                <RevyoosWidget className="w-full" widgetCode='eyJwIjoiNjVlMGZiNTg5MjBlYWEwMDYxMjdlNWVjIn0=' />
+                {/* Direct iframe implementation for Revyoos */}
+                <div className="revyoos-container w-full" style={{ minHeight: '500px' }}>
+                  <iframe 
+                    src="https://www.revyoos.com/embed/widget?p=65e0fb5920ea00061275ec"
+                    title="Revyoos Guest Reviews"
+                    style={{
+                      border: 'none',
+                      width: '100%',
+                      height: '500px'
+                    }}
+                  />
+                </div>
               </div>
             </div>
             

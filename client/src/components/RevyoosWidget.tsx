@@ -16,7 +16,8 @@ const RevyoosWidget: React.FC<RevyoosWidgetProps> = ({ className, widgetCode }) 
   }
 
   // Create a direct iframe to the Revyoos widget
-  const iframeSrc = `https://www.revyoos.com/widget/${widgetCode}`;
+  // Using proper embed format for Revyoos
+  const iframeSrc = `https://www.revyoos.com/embed/widget?p=${widgetCode.replace('eyJwIjoiNjVlMGZiNTg5MjBlYWEwMDYxMjdlNWVjIn0=', '65e0fb5920ea00061275ec')}`;
 
   return (
     <div className={`w-full max-w-full overflow-hidden ${className || ''}`}>
