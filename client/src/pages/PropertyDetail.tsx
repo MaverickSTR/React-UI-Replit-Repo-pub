@@ -320,9 +320,34 @@ const PropertyDetail: React.FC = () => {
             {/* Property Description */}
             <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
               <div className="prose max-w-none text-gray-600">
-                <p>{property.description}</p>
+                <p>{property.description.substring(0, 300)}...</p>
               </div>
-              <Button variant="link" className="mt-4 text-primary p-0 h-auto">Read more</Button>
+              
+              <Accordion type="single" collapsible className="w-full mt-4 border-t pt-4">
+                <AccordionItem value="description" className="border-none">
+                  <AccordionTrigger className="py-2 font-medium text-primary">
+                    The Space
+                  </AccordionTrigger>
+                  <AccordionContent className="text-gray-600">
+                    <div className="space-y-4">
+                      <p>{property.description}</p>
+                      <p>
+                        This stunning {property.bedrooms}-bedroom home has been thoughtfully designed to provide an exceptional
+                        stay. The open-concept living area flows seamlessly to a private balcony with sweeping views. 
+                        The fully-equipped gourmet kitchen features premium appliances, perfect for preparing meals.
+                      </p>
+                      <p>
+                        Each bedroom has been designed with comfort in mind, featuring premium linens, ample storage, 
+                        and luxurious touches. The master suite includes a spa-like ensuite bathroom with a rainfall shower.
+                      </p>
+                      <p>
+                        Additional features include high-speed WiFi throughout, smart TVs in each room, in-unit laundry,
+                        and secure parking.
+                      </p>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
             </div>
 
             {/* Amenities */}
@@ -352,8 +377,37 @@ const PropertyDetail: React.FC = () => {
                   }}
                   className="mx-auto w-full"
                 >
-                  <CarouselContent>
-                    {(property.bedroomDetails?.length ? property.bedroomDetails : generateMockBedroomDetails(property)).map((bedroom, index) => (
+                  <CarouselContent className="flex">
+                    {/* Fixed display for first two bedrooms */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full mb-4">
+                      {(property.bedroomDetails?.length ? property.bedroomDetails : generateMockBedroomDetails(property)).slice(0, 2).map((bedroom, index) => (
+                        <div key={index} className="h-full">
+                          <div className="rounded-xl border border-gray-200 overflow-hidden h-full flex flex-col">
+                            <div className="aspect-square relative overflow-hidden bg-gray-100">
+                              <img 
+                                src={bedroom.image || property.imageUrl} 
+                                alt={`${bedroom.name} in ${property.name}`}
+                                className="object-cover w-full h-full"
+                              />
+                            </div>
+                            <div className="p-4 flex-1 flex flex-col">
+                              <h3 className="font-medium text-lg">{bedroom.name}</h3>
+                              <div className="mt-2 space-y-1.5 flex-1">
+                                {bedroom.beds.map((bed, bedIndex) => (
+                                  <div key={bedIndex} className="flex items-center text-gray-600 text-sm">
+                                    <Bed className="h-4 w-4 mr-2 text-gray-400" />
+                                    <span>{bed.count} {bed.count > 1 ? bed.type + 's' : bed.type}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    {/* Scrollable carousel for additional bedrooms */}
+                    {property.bedrooms > 2 && (property.bedroomDetails?.length ? property.bedroomDetails : generateMockBedroomDetails(property)).slice(2).map((bedroom, index) => (
                       <CarouselItem key={index} className="basis-full sm:basis-1/2 md:basis-1/2 lg:basis-1/3">
                         <div className="p-1 h-full">
                           <div className="rounded-xl border border-gray-200 overflow-hidden h-full flex flex-col">
