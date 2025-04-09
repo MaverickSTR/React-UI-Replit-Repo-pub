@@ -619,75 +619,61 @@ const PropertyDetail: React.FC = () => {
               </Accordion>
             </div>
             
-            {/* Why Book Direct Section - Now below FAQ */}
-            <div className="bg-gray-50 p-8 rounded-lg shadow-sm mb-6">
-              <h2 className="text-2xl font-bold text-center mb-4">Why Book Direct?</h2>
-              <p className="text-center text-gray-700 mb-8 max-w-3xl mx-auto">
-                Experience the perfect blend of luxury and convenience at this stunning {property.bedrooms}-bedroom {property.type?.toLowerCase()} in {property.location}. 
-                Boasting breathtaking views, upscale furnishings, and amenities like a heated indoor pool, hot tub, and direct beach access, 
-                it's the ultimate retreat for families and friends. Located just minutes from local attractions, 
-                this {property.type?.toLowerCase()} promises relaxation and unforgettable memories.
-              </p>
+            {/* Why Book Direct Section - Minimal design like shown in screenshot */}
+            <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
+              <h2 className="text-xl font-bold mb-6">Why Book Direct</h2>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {/* Card 1 */}
-                <div className="bg-white p-6 rounded-lg shadow-sm">
-                  <div className="flex justify-center mb-4">
-                    <div className="w-16 h-16 flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" className="w-12 h-12 text-primary" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="10" fill="#FFE2EC" />
-                        <path d="M7.5 11C8.32843 11 9 10.3284 9 9.5C9 8.67157 8.32843 8 7.5 8C6.67157 8 6 8.67157 6 9.5C6 10.3284 6.67157 11 7.5 11Z" fill="#FF6B95" />
-                        <path d="M7.5 16C8.32843 16 9 15.3284 9 14.5C9 13.6716 8.32843 13 7.5 13C6.67157 13 6 13.6716 6 14.5C6 15.3284 6.67157 16 7.5 16Z" fill="#FF6B95" />
-                        <path d="M12.5 11C13.3284 11 14 10.3284 14 9.5C14 8.67157 13.3284 8 12.5 8C11.6716 8 11 8.67157 11 9.5C11 10.3284 11.6716 11 12.5 11Z" fill="#46C056" />
-                        <path fillRule="evenodd" clipRule="evenodd" d="M17.4 10C17.7314 10 18 9.73137 18 9.4V4.6C18 4.26863 17.7314 4 17.4 4H6.6C6.26863 4 6 4.26863 6 4.6V6H8V6H16V8H12V10H17.4Z" fill="#956B50" />
-                      </svg>
-                    </div>
+              <div className="space-y-6 divide-y">
+                {/* Item 1 */}
+                <div className="flex items-start gap-4 py-4 hover-scale transition-all">
+                  <div className="flex-shrink-0 bg-blue-50 p-3 rounded-full">
+                    <svg className="w-6 h-6 text-blue-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 12.75L11.25 15L15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                   </div>
-                  <h3 className="text-lg font-bold text-center mb-2">Memorable Design</h3>
-                  <p className="text-gray-600 text-center">
-                    Thoughtfully designed with premium furnishings, stylish decor, and personalized touches. Every detail has been carefully considered to create a space that's not only functional but also inviting and unforgettable for your stay.
-                  </p>
+                  <div>
+                    <h3 className="font-medium text-gray-900">Identity verified</h3>
+                    <p className="text-gray-600 text-sm">This host verified their email and phone number.</p>
+                  </div>
                 </div>
                 
-                {/* Card 2 */}
-                <div className="bg-white p-6 rounded-lg shadow-sm">
-                  <div className="flex justify-center mb-4">
-                    <div className="w-16 h-16 flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" className="w-12 h-12 text-primary" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 6L14.25 10.5L19.5 11.25L15.75 14.75L16.75 20L12 17.5L7.25 20L8.25 14.75L4.5 11.25L9.75 10.5L12 6Z" fill="#D4AF37" />
-                        <path d="M5 12L7.25 10.5L9.75 10.5L5 12Z" fill="#B28E29" />
-                        <path d="M19 12L16.75 10.5L14.25 10.5L19 12Z" fill="#B28E29" />
-                        <path d="M11 18.5L12 17.5L13 18.5L12 20L11 18.5Z" fill="#B28E29" />
-                        <path d="M21 7L19 5L19 9L21 7Z" fill="#FFADB4" />
-                        <path d="M23 7.5C23 6.67157 22.3284 6 21.5 6C20.6716 6 20 6.67157 20 7.5C20 8.32843 20.6716 9 21.5 9C22.3284 9 23 8.32843 23 7.5Z" fill="#FF8087" />
-                      </svg>
-                    </div>
+                {/* Item 2 */}
+                <div className="flex items-start gap-4 py-4 hover-scale transition-all">
+                  <div className="flex-shrink-0 bg-amber-50 p-3 rounded-full">
+                    <svg className="w-6 h-6 text-amber-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                   </div>
-                  <h3 className="text-lg font-bold text-center mb-2">5-Star Experience</h3>
-                  <p className="text-gray-600 text-center">
-                    Our goal is to deliver a 5-star experience for every guest. From high-quality amenities to the little extras that make a big difference, we aim to provide a seamless and exceptional experience that exceeds your expectations.
-                  </p>
+                  <div>
+                    <h3 className="font-medium text-gray-900">Pets are allowed</h3>
+                    <p className="text-gray-600 text-sm">Pets will be considered, but must be okayed by the host.</p>
+                  </div>
                 </div>
                 
-                {/* Card 3 */}
-                <div className="bg-white p-6 rounded-lg shadow-sm">
-                  <div className="flex justify-center mb-4">
-                    <div className="w-16 h-16 flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" className="w-12 h-12 text-primary" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M17 9C17 11.7614 14.7614 14 12 14C9.23858 14 7 11.7614 7 9C7 6.23858 9.23858 4 12 4C14.7614 4 17 6.23858 17 9Z" fill="#FFADB4" />
-                        <path fillRule="evenodd" clipRule="evenodd" d="M12 10C13.1046 10 14 9.10457 14 8C14 6.89543 13.1046 6 12 6C10.8954 6 10 6.89543 10 8C10 9.10457 10.8954 10 12 10ZM12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z" fill="#FF8087" />
-                        <path d="M18 16H15.5L15.5 20L18 20C18.5523 20 19 19.5523 19 19V17C19 16.4477 18.5523 16 18 16Z" fill="#D2B48C" />
-                        <path d="M8.5 16H6C5.44772 16 5 16.4477 5 17V19C5 19.5523 5.44772 20 6 20H8.5L8.5 16Z" fill="#D2B48C" />
-                        <path d="M15.5 16H8.5V20H15.5V16Z" fill="#FFCC80" />
-                        <path d="M12 14C8.5 14 5.5 16 5 20H19C18.5 16 15.5 14 12 14Z" fill="#FFB3C0" />
-                        <circle cx="19" cy="14" r="1" fill="#333333" />
-                      </svg>
-                    </div>
+                {/* Item 3 */}
+                <div className="flex items-start gap-4 py-4 hover-scale transition-all">
+                  <div className="flex-shrink-0 bg-green-50 p-3 rounded-full">
+                    <svg className="w-6 h-6 text-green-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                   </div>
-                  <h3 className="text-lg font-bold text-center mb-2">Save On Fees</h3>
-                  <p className="text-gray-600 text-center">
-                    Save up to 15% when you book directly. Avoid annoying service fees & save money by booking directly with us. Direct bookings have a 4% fee compared to 14%+ on Airbnb! More money in your pocket!
-                  </p>
+                  <div>
+                    <h3 className="font-medium text-gray-900">Book Direct and Save</h3>
+                    <p className="text-gray-600 text-sm">Save on service fees by booking direct on our platform.</p>
+                  </div>
+                </div>
+                
+                {/* Item 4 */}
+                <div className="flex items-start gap-4 py-4 hover-scale transition-all">
+                  <div className="flex-shrink-0 bg-purple-50 p-3 rounded-full">
+                    <svg className="w-6 h-6 text-purple-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-gray-900">Instant confirmation</h3>
+                    <p className="text-gray-600 text-sm">Your booking will be instantly confirmed after payment.</p>
+                  </div>
                 </div>
               </div>
             </div>
