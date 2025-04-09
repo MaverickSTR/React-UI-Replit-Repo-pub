@@ -207,37 +207,8 @@ const PropertyDetail: React.FC = () => {
               <span>{property.city}, {state}</span>
             </div>
             
-            {/* Why Book Direct Section - Minimal 3-item design */}
-            <div className="flex-1 max-w-md">
-              <div className="flex justify-end gap-6">
-                <div className="flex items-center gap-2 hover-scale transition-all">
-                  <div className="flex-shrink-0 bg-amber-50 p-2 rounded-full">
-                    <svg className="w-4 h-4 text-amber-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 6L14.25 10.5L19.5 11.25L15.75 14.75L16.75 20L12 17.5L7.25 20L8.25 14.75L4.5 11.25L9.75 10.5L12 6Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="currentColor"/>
-                    </svg>
-                  </div>
-                  <span className="text-xs font-medium">5-Star Experience</span>
-                </div>
-                
-                <div className="flex items-center gap-2 hover-scale transition-all">
-                  <div className="flex-shrink-0 bg-green-50 p-2 rounded-full">
-                    <svg className="w-4 h-4 text-green-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
-                  <span className="text-xs font-medium">Book Direct & Save</span>
-                </div>
-                
-                <div className="flex items-center gap-2 hover-scale transition-all">
-                  <div className="flex-shrink-0 bg-purple-50 p-2 rounded-full">
-                    <svg className="w-4 h-4 text-purple-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
-                  <span className="text-xs font-medium">Pets Allowed</span>
-                </div>
-              </div>
-            </div>
+            {/* Empty space where duplicated Why Book Direct used to be */}
+            <div className="flex-1"></div>
             
             <div className="flex">
               <button 
