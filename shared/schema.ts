@@ -35,6 +35,8 @@ export const properties = pgTable("properties", {
   zipCode: text("zip_code"),
   country: text("country").notNull(),
   neighborhood: text("neighborhood"),
+  latitude: doublePrecision("latitude"),
+  longitude: doublePrecision("longitude"),
   
   // Property details
   price: integer("price").notNull(), // price per night
@@ -126,6 +128,8 @@ export const cities = pgTable("cities", {
   state: text("state"),
   description: text("description").notNull(),
   longDescription: text("long_description"),
+  latitude: doublePrecision("latitude"),
+  longitude: doublePrecision("longitude"),
   imageUrl: text("image_url").notNull(),
   additionalImages: text("additional_images").array(),
   propertyCount: integer("property_count").default(0),
@@ -181,6 +185,8 @@ export const neighborhoods = pgTable("neighborhoods", {
   cityId: integer("city_id").notNull(),
   description: text("description"),
   longDescription: text("long_description"),
+  latitude: doublePrecision("latitude"),
+  longitude: doublePrecision("longitude"),
   imageUrl: text("image_url").notNull(),
   additionalImages: text("additional_images").array(),
   propertyCount: integer("property_count").default(0),

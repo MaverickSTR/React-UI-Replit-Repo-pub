@@ -33,3 +33,41 @@ iframe, .revyoos-embed-widget, .booking-widget-container {
 .overflow-x-hidden {
   overflow-x: hidden !important;
 }
+
+/* Property card hover effects */
+.hover-scale {
+  transition: transform 0.3s ease-in-out;
+}
+
+.card-hover:hover .hover-scale {
+  transform: scale(1.05);
+}
+
+/* Heart button animation */
+.heart-beat {
+  transition: transform 0.15s ease-in-out;
+}
+
+.heart-beat:hover {
+  transform: scale(1.15);
+}
+
+/* Property card highlight animation when clicked from map */
+@keyframes highlight-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(79, 70, 229, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(79, 70, 229, 0);
+  }
+}
+
+.property-highlight {
+  animation: highlight-pulse 2s ease-out;
+  border-color: rgb(79, 70, 229);
+  border-width: 2px;
+  transition: all 0.5s ease;
+}
