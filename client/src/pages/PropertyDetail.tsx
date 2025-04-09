@@ -423,7 +423,22 @@ const PropertyDetail: React.FC = () => {
             <div className="bg-white p-6 rounded-lg shadow-sm mb-6 overflow-hidden">
               <h2 className="text-xl font-bold mb-6">Guest Reviews</h2>
               <div className="w-full overflow-x-hidden">
-                <RevyoosWidget className="w-full" widgetCode={property.reviewWidgetCode || undefined} />
+                <RevyoosWidget className="w-full" widgetCode='eyJwIjoiNjVlMGZiNTg5MjBlYWEwMDYxMjdlNWVjIn0=' />
+              </div>
+            </div>
+            
+            {/* Location Map - Moved under Guest Reviews */}
+            <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
+              <h3 className="text-xl font-bold mb-4">Location</h3>
+              <div className="aspect-[16/9] bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
+                <div className="text-center">
+                  <MapPin className="h-8 w-8 text-gray-400 mx-auto mb-2" />
+                  <p className="text-gray-500">Map view of {property.location}</p>
+                </div>
+              </div>
+              <div className="text-gray-600">
+                <p className="mb-2"><strong>{property.location}, {property.city}</strong></p>
+                <p>Located in one of {property.city}'s most sought-after neighborhoods.</p>
               </div>
             </div>
 
@@ -707,22 +722,7 @@ const PropertyDetail: React.FC = () => {
                 </div>
               </div>
               
-              {/* Direct Booking Protection removed */}
-              
-              {/* Location Map */}
-              <div className="bg-white p-4 rounded-lg shadow-sm">
-                <h3 className="text-lg font-semibold mb-3">Location</h3>
-                <div className="aspect-[16/9] bg-gray-200 rounded-lg mb-3 flex items-center justify-center">
-                  <div className="text-center">
-                    <MapPin className="h-8 w-8 text-gray-400 mx-auto mb-2" />
-                    <p className="text-gray-500">Map view of {property.location}</p>
-                  </div>
-                </div>
-                <div className="text-sm text-gray-600">
-                  <p className="mb-2"><strong>{property.location}, {property.city}</strong></p>
-                  <p>Located in one of {property.city}'s most sought-after neighborhoods.</p>
-                </div>
-              </div>
+              {/* Direct Booking Protection and Location Map removed */}
             </div>
           </div>
         </div>
