@@ -15,7 +15,7 @@ import {
   SheetContent, 
   SheetTrigger 
 } from '@/components/ui/sheet';
-import SearchBar from './SearchBar';
+import HospitableSearchBar from '@/components/HospitableSearchBar';
 import { Menu, User, Home, MapPin, Heart, LogIn } from 'lucide-react';
 
 const Navbar: React.FC = () => {
@@ -32,9 +32,9 @@ const Navbar: React.FC = () => {
             <span className="text-primary text-2xl font-bold">StayDirectly</span>
           </Link>
 
-          {/* Search bar (desktop) */}
+          {/* Hospitable Search widget (desktop) */}
           <div className="hidden lg:flex items-center flex-1 max-w-2xl mx-8">
-            <SearchBar />
+            <HospitableSearchBar className="w-full" />
           </div>
 
           {/* Navigation Links */}
@@ -106,9 +106,9 @@ const Navbar: React.FC = () => {
           </Sheet>
         </div>
         
-        {/* Search bar (mobile) */}
+        {/* Hospitable Search widget (mobile) */}
         <div className="mt-4 lg:hidden">
-          <SearchBar />
+          <HospitableSearchBar className="w-full" />
         </div>
       </div>
     </header>

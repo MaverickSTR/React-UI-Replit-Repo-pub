@@ -5,7 +5,7 @@ import { ChevronRight } from 'lucide-react';
 import PropertyCard from '@/components/PropertyCard';
 import DestinationCard from '@/components/DestinationCard';
 import TestimonialCard from '@/components/TestimonialCard';
-import SearchWidget from '@/components/SearchWidget';
+import HospitableSearchBar from '@/components/HospitableSearchBar';
 import { getFeaturedProperties, getFeaturedCities } from '@/lib/api';
 import { Meta } from '@/lib/seo';
 
@@ -60,8 +60,10 @@ const Home: React.FC = () => {
           <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">Find your next perfect stay</h1>
           <p className="text-xl md:text-2xl mb-8 text-center max-w-2xl">Book directly with hosts worldwide and save on booking fees</p>
           
-          {/* Search Widget */}
-          <SearchWidget variant="hero" />
+          {/* Hospitable Search Widget */}
+          <div className="bg-white bg-opacity-95 rounded-lg shadow-lg p-4 w-full max-w-4xl">
+            <HospitableSearchBar className="w-full" />
+          </div>
         </div>
       </div>
 

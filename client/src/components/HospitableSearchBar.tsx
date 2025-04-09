@@ -1,17 +1,19 @@
 import React, { useEffect, useRef } from 'react';
 
-interface HospitableSearchWidgetProps {
-  identifier: string;
+interface HospitableSearchBarProps {
+  identifier?: string;
   type?: 'custom' | 'default';
+  resultsUrl?: string;
   className?: string;
 }
 
 /**
- * A component that embeds the Hospitable Direct property search widget
+ * A component that embeds the Hospitable search bar for navigation use
  */
-const HospitableSearchWidget: React.FC<HospitableSearchWidgetProps> = ({
-  identifier,
-  type = 'default',
+const HospitableSearchBar: React.FC<HospitableSearchBarProps> = ({
+  identifier = '3747e731-d69b-4c6e-93a9-d6a432b26db9',
+  type = 'custom',
+  resultsUrl = '/hospitable-search',
   className = '',
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -40,7 +42,7 @@ const HospitableSearchWidget: React.FC<HospitableSearchWidgetProps> = ({
       scriptLoaded.current = true;
       createWidget();
     }
-  }, [identifier, type]);
+  }, [identifier, type, resultsUrl]);
 
   const createWidget = () => {
     if (!containerRef.current) return;
@@ -49,9 +51,10 @@ const HospitableSearchWidget: React.FC<HospitableSearchWidgetProps> = ({
     containerRef.current.innerHTML = '';
     
     // Create the hospitable element
-    const widgetElement = document.createElement('hospitable-direct-pps');
+    const widgetElement = document.createElement('hospitable-direct-mps');
     widgetElement.setAttribute('identifier', identifier);
     widgetElement.setAttribute('type', type);
+    widgetElement.setAttribute('results-url', resultsUrl);
     
     // Append to container
     containerRef.current.appendChild(widgetElement);
@@ -60,10 +63,10 @@ const HospitableSearchWidget: React.FC<HospitableSearchWidgetProps> = ({
   return (
     <div 
       ref={containerRef} 
-      className={`hospitable-search-widget-container ${className}`}
-      aria-label="Property search widget"
+      className={`hospitable-search-bar-container ${className}`}
+      aria-label="Search properties"
     />
   );
 };
 
-export default HospitableSearchWidget;
+export default HospitableSearchBar;
