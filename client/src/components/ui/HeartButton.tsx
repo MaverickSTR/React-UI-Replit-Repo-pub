@@ -48,13 +48,20 @@ const HeartButton: React.FC<HeartButtonProps> = ({
       onClick={toggleFavorite}
       disabled={isLoading}
       className={cn(
-        "transition-colors focus:outline-none",
+        "transition-all focus:outline-none",
         isFavorited ? "text-red-500" : "text-gray-200 hover:text-white",
+        "hover:scale-110 transition-transform duration-200",
         className
       )}
       aria-label={isFavorited ? "Remove from favorites" : "Add to favorites"}
     >
-      <Heart className={cn("h-6 w-6", isFavorited && "fill-current")} />
+      <Heart 
+        className={cn(
+          "h-6 w-6",
+          isFavorited && "fill-current",
+          isFavorited && "heart-beat active"
+        )} 
+      />
     </button>
   );
 };

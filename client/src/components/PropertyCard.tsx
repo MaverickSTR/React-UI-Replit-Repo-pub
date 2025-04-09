@@ -37,18 +37,18 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
 
   return (
     <Link href={`/property/${id}`}>
-      <Card className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full">
-        <div className="relative aspect-[4/3]">
+      <Card className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow card-hover h-full">
+        <div className="relative aspect-[4/3] overflow-hidden">
           <img 
             src={imageUrl} 
             alt={name} 
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover hover-scale transition-transform duration-700"
           />
           <div className="absolute top-3 right-3">
-            <HeartButton propertyId={id} />
+            <HeartButton propertyId={id} className="heart-beat" />
           </div>
           <div className="absolute bottom-3 left-3">
-            <Badge variant="secondary" className="bg-white/80 hover:bg-white/80 text-black font-medium shadow-sm">
+            <Badge variant="secondary" className="bg-white/80 hover:bg-white/90 text-black font-medium shadow-sm hover-scale transition-all">
               {type}
             </Badge>
           </div>

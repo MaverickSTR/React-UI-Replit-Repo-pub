@@ -208,13 +208,13 @@ const PropertyDetail: React.FC = () => {
             </div>
             <button 
               onClick={toggleHeart}
-              className="flex items-center text-gray-600 hover:text-primary transition-colors ml-auto"
+              className="flex items-center text-gray-600 hover:text-primary transition-colors ml-auto hover-scale"
             >
-              <Heart className={`h-4 w-4 mr-1 ${isHeartFilled ? 'fill-current text-red-500' : ''}`} />
+              <Heart className={`h-4 w-4 mr-1 ${isHeartFilled ? 'fill-current text-red-500 heart-beat active' : 'heart-beat'}`} />
               <span>Save</span>
             </button>
-            <button className="flex items-center text-gray-600 hover:text-primary transition-colors ml-4">
-              <Share className="h-4 w-4 mr-1" />
+            <button className="flex items-center text-gray-600 hover:text-primary transition-colors ml-4 hover-scale">
+              <Share className="h-4 w-4 mr-1 icon-bounce" />
               <span>Share</span>
             </button>
           </div>
@@ -228,43 +228,43 @@ const PropertyDetail: React.FC = () => {
               <img 
                 src={property.imageUrl} 
                 alt={property.name}
-                className="w-full h-full object-cover rounded-tl-lg" 
+                className="w-full h-full object-cover rounded-tl-lg hover-scale transition-transform duration-700" 
               />
             </div>
             
             {/* Additional images - first two on top row */}
-            <div className="h-[198px]">
+            <div className="h-[198px] overflow-hidden">
               <img 
                 src={property.additionalImages?.[0] || 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=871&q=80'} 
                 alt={`${property.name} - view 2`}
-                className="w-full h-full object-cover rounded-tr-lg" 
+                className="w-full h-full object-cover rounded-tr-lg hover-scale transition-transform duration-700" 
               />
             </div>
-            <div className="h-[198px]">
+            <div className="h-[198px] overflow-hidden">
               <img 
                 src={property.additionalImages?.[1] || 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=870&q=80'} 
                 alt={`${property.name} - view 3`}
-                className="w-full h-full object-cover" 
+                className="w-full h-full object-cover hover-scale transition-transform duration-700" 
               />
             </div>
             
             {/* Additional images - bottom row */}
-            <div className="h-[198px]">
+            <div className="h-[198px] overflow-hidden">
               <img 
                 src={property.additionalImages?.[2] || 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=867&q=80'} 
                 alt={`${property.name} - view 4`}
-                className="w-full h-full object-cover rounded-bl-lg" 
+                className="w-full h-full object-cover rounded-bl-lg hover-scale transition-transform duration-700" 
               />
             </div>
-            <div className="relative h-[198px]">
+            <div className="relative h-[198px] overflow-hidden">
               <img 
                 src={property.additionalImages?.[3] || 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=870&q=80'} 
                 alt={`${property.name} - view 5`}
-                className="w-full h-full object-cover rounded-br-lg" 
+                className="w-full h-full object-cover rounded-br-lg hover-scale transition-transform duration-700" 
               />
-              <button className="absolute right-4 bottom-4 bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-800 px-4 py-2 rounded-lg shadow-sm transition-all">
+              <button className="absolute right-4 bottom-4 bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-800 px-4 py-2 rounded-lg shadow-sm transition-all gallery-nav-btn pulse">
                 <span className="flex items-center">
-                  <Tv className="mr-2 h-4 w-4" /> Show all photos
+                  <Tv className="mr-2 h-4 w-4 icon-bounce" /> Show all photos
                 </span>
               </button>
             </div>
@@ -367,7 +367,7 @@ const PropertyDetail: React.FC = () => {
                   </div>
                 ))}
               </div>
-              <Button variant="outline" className="mt-6 border border-gray-800 hover:bg-gray-100 text-gray-800 font-medium px-6 py-2 rounded-lg transition-colors">
+              <Button variant="outline" className="mt-6 border border-gray-800 hover:bg-gray-100 text-gray-800 font-medium px-6 py-2 rounded-lg transition-colors hover-scale btn-pulse">
                 Show all amenities
               </Button>
             </div>
@@ -381,10 +381,10 @@ const PropertyDetail: React.FC = () => {
                     <div className="flex items-center gap-2">
                       <span>1 / {property.bedrooms}</span>
                       <div className="flex gap-1">
-                        <button className="bg-white border border-gray-300 rounded-full p-1 disabled:opacity-50">
+                        <button className="bg-white border border-gray-300 rounded-full p-1 disabled:opacity-50 transition-all hover:bg-gray-50 hover-scale">
                           <ChevronLeft className="h-4 w-4" />
                         </button>
-                        <button className="bg-white border border-gray-300 rounded-full p-1">
+                        <button className="bg-white border border-gray-300 rounded-full p-1 transition-all hover:bg-gray-50 hover-scale">
                           <ChevronRight className="h-4 w-4" />
                         </button>
                       </div>
@@ -402,7 +402,7 @@ const PropertyDetail: React.FC = () => {
                         <img 
                           src={bedroom.image || property.imageUrl} 
                           alt={`${bedroom.name} in ${property.name}`}
-                          className="object-cover w-full h-full"
+                          className="object-cover w-full h-full hover-scale transition-transform duration-700"
                         />
                       </div>
                       <h3 className="font-medium text-base mb-1">{bedroom.name}</h3>
