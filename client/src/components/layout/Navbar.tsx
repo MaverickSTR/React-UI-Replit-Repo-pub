@@ -42,6 +42,9 @@ const Navbar: React.FC = () => {
             <Link href="/search" className="text-gray-600 hover:text-primary transition-colors">
               Destinations
             </Link>
+            <Link href="/hospitable-search" className="text-gray-600 hover:text-primary transition-colors">
+              Hospitable Search
+            </Link>
             
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -90,6 +93,9 @@ const Navbar: React.FC = () => {
                   </Link>
                   <Link href="/search" className="block py-2 px-4 hover:bg-gray-100 rounded-md">
                     Destinations
+                  </Link>
+                  <Link href="/hospitable-search" className="block py-2 px-4 hover:bg-gray-100 rounded-md">
+                    Hospitable Search
                   </Link>
                   <Link href="#" className="block py-2 px-4 hover:bg-gray-100 rounded-md">
                     Sign in

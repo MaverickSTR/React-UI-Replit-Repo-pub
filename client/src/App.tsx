@@ -10,6 +10,7 @@ import CityPage from "@/pages/CityPage";
 import Admin from "@/pages/Admin";
 import ApiPropertiesPage from "@/pages/ApiPropertiesPage";
 import ApiPropertyDetailPage from "@/pages/ApiPropertyDetailPage";
+import HospitableSearch from "@/pages/HospitableSearch";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
@@ -26,6 +27,7 @@ function Router() {
           <Route path="/admin" component={Admin} />
           <Route path="/api-properties" component={ApiPropertiesPage} />
           <Route path="/api-properties/:id" component={ApiPropertyDetailPage} />
+          <Route path="/hospitable-search" component={HospitableSearch} />
           <Route component={NotFound} />
         </Switch>
       </main>
