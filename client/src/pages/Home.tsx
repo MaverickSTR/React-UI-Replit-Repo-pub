@@ -61,7 +61,7 @@ const Home: React.FC = () => {
           <p className="text-xl md:text-2xl mb-8 text-center max-w-2xl">Book directly with hosts worldwide and save on booking fees</p>
           
           {/* Hospitable Search Widget */}
-          <div className="bg-white bg-opacity-95 rounded-lg shadow-lg p-4 w-full max-w-4xl">
+          <div className="w-full max-w-4xl">
             <HospitableSearchBar className="w-full" />
           </div>
         </div>
