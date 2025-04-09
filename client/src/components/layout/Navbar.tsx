@@ -16,7 +16,7 @@ import {
   SheetTrigger 
 } from '@/components/ui/sheet';
 import HospitableSearchBar from '@/components/HospitableSearchBar';
-import { Menu, User, Home, MapPin, Heart, LogIn } from 'lucide-react';
+import { Menu, User, Home, MapPin, Heart, LogIn, Building, ChevronDown } from 'lucide-react';
 
 const Navbar: React.FC = () => {
   const [location] = useLocation();
@@ -38,12 +38,46 @@ const Navbar: React.FC = () => {
           {/* Navigation Links */}
           <nav className="hidden md:flex items-center space-x-6">
             <Link href="/search" className="text-gray-600 hover:text-primary transition-colors">
-              Destinations
+              Book Your Stay
             </Link>
+            
+            {/* Markets Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center text-gray-600 hover:text-primary transition-colors">
+                  <span>Markets</span>
+                  <ChevronDown className="ml-1 h-4 w-4" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="center" className="w-56">
+                <DropdownMenuItem asChild>
+                  <Link href="/city/shenandoah" className="flex cursor-pointer">
+                    <Building className="mr-2 h-4 w-4" /> Shenandoah, VA
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/city/annapolis" className="flex cursor-pointer">
+                    <Building className="mr-2 h-4 w-4" /> Annapolis, MD
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/city/nashville" className="flex cursor-pointer">
+                    <Building className="mr-2 h-4 w-4" /> Nashville, TN
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/city/blue-ridge" className="flex cursor-pointer">
+                    <Building className="mr-2 h-4 w-4" /> Blue Ridge, GA
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            
             <Link href="/hospitable-search" className="text-gray-600 hover:text-primary transition-colors">
               Hospitable Search
             </Link>
             
+            {/* User Menu Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" className="rounded-full flex items-center gap-2 px-4">
@@ -90,8 +124,28 @@ const Navbar: React.FC = () => {
                     Home
                   </Link>
                   <Link href="/search" className="block py-2 px-4 hover:bg-gray-100 rounded-md">
-                    Destinations
+                    Book Your Stay
                   </Link>
+                  
+                  {/* Mobile Markets Section */}
+                  <div className="block py-2 px-4">
+                    <div className="font-medium mb-2">Markets</div>
+                    <div className="ml-4 space-y-2">
+                      <Link href="/city/shenandoah" className="block py-1 hover:text-primary transition-colors">
+                        Shenandoah, VA
+                      </Link>
+                      <Link href="/city/annapolis" className="block py-1 hover:text-primary transition-colors">
+                        Annapolis, MD
+                      </Link>
+                      <Link href="/city/nashville" className="block py-1 hover:text-primary transition-colors">
+                        Nashville, TN
+                      </Link>
+                      <Link href="/city/blue-ridge" className="block py-1 hover:text-primary transition-colors">
+                        Blue Ridge, GA
+                      </Link>
+                    </div>
+                  </div>
+                  
                   <Link href="/hospitable-search" className="block py-2 px-4 hover:bg-gray-100 rounded-md">
                     Hospitable Search
                   </Link>
