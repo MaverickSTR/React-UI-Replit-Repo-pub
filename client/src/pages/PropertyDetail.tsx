@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getProperty, getPropertyReviews } from '@/lib/api';
 import RevyoosIframe from '@/components/RevyoosIframe';
 import RevyoosScriptWidget from '@/components/RevyoosScriptWidget';
+import RevyoosDirectEmbed from '@/components/RevyoosDirectEmbed';
 import { 
   Wifi, 
   Snowflake, 
@@ -423,14 +424,13 @@ const PropertyDetail: React.FC = () => {
 
 
             {/* Reviews Section with Revyoos Widget */}
-            <div className="bg-white p-6 rounded-lg shadow-sm mb-6 overflow-hidden">
+            <div className="bg-white p-6 rounded-lg shadow-sm mb-6 overflow-visible">
               <h2 className="text-xl font-bold mb-6">Guest Reviews</h2>
               
-              {/* Using the RevyoosScriptWidget component */}
-              <RevyoosScriptWidget 
-                propertyId="65e0fb5892ea00061e7e5ec" 
-                className="w-full mx-auto"
-              />
+              {/* Using the RevyoosDirectEmbed component - this is the exact implementation requested by the user */}
+              <div className="relative w-full min-h-[600px]">
+                <RevyoosDirectEmbed className="w-full mx-auto" />
+              </div>
             </div>
             
             {/* Location Map - Moved under Guest Reviews */}

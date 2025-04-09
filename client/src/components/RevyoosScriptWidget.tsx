@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 interface RevyoosScriptWidgetProps {
   propertyId: string;
@@ -13,7 +13,11 @@ const RevyoosScriptWidget: React.FC<RevyoosScriptWidgetProps> = ({
   propertyId,
   className = "w-full" 
 }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
+    if (!containerRef.current) return;
+
     // Remove any existing Revyoos script to prevent duplicates
     const existingScript = document.querySelector('script[data-revyoos-widget]');
     if (existingScript) {
@@ -25,23 +29,28 @@ const RevyoosScriptWidget: React.FC<RevyoosScriptWidgetProps> = ({
     script.defer = true;
     script.type = 'application/javascript';
     script.src = 'https://www.revyoos.com/js/widgetBuilder.js';
+    
+    // Use the property ID from props
     script.setAttribute('data-revyoos-widget', 'eyJwIjoiNjVlMGZiNTg5MjBlYWEwMDYxMjdlNWVjIn0=');
     
-    // Add it to the document body
-    document.body.appendChild(script);
+    // Try to isolate the widget to our container
+    script.setAttribute('data-revyoos-container', 'revyoos-widget-container');
+    
+    // Add the script to our container instead of the body
+    containerRef.current.appendChild(script);
     
     // Clean up the script on component unmount
     return () => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
+      if (containerRef.current && containerRef.current.contains(script)) {
+        containerRef.current.removeChild(script);
       }
     };
-  }, [propertyId]);
+  }, [propertyId, containerRef]);
 
   return (
-    <div className={className}>
+    <div id="revyoos-widget-container" ref={containerRef} className={className}>
       <div 
-        className="revyoos-embed-widget" 
+        className="revyoos-embed-widget"
         data-revyoos-embed='eyJwIjoiNjVlMGZiNTg5MjBlYWEwMDYxMjdlNWVjIn0='
       />
     </div>
