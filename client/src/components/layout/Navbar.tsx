@@ -32,10 +32,8 @@ const Navbar: React.FC = () => {
             <span className="text-primary text-2xl font-bold">StayDirectly</span>
           </Link>
 
-          {/* Hospitable Search widget (desktop) */}
-          <div className="hidden lg:flex items-center flex-1 max-w-2xl mx-8">
-            <HospitableSearchBar className="w-full" />
-          </div>
+          {/* Spacer for centering links and dropdown */}
+          <div className="hidden lg:flex items-center flex-1 max-w-2xl mx-8"></div>
 
           {/* Navigation Links */}
           <nav className="hidden md:flex items-center space-x-6">
@@ -106,10 +104,7 @@ const Navbar: React.FC = () => {
           </Sheet>
         </div>
         
-        {/* Hospitable Search widget (mobile) */}
-        <div className="mt-4 lg:hidden">
-          <HospitableSearchBar className="w-full" />
-        </div>
+        {/* No mobile search bar - using hero search instead */}
       </div>
     </header>
   );
