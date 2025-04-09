@@ -19,6 +19,8 @@ import {
   Bed,
   Bath,
   Shield,
+  ChevronLeft,
+  ChevronRight,
   Share,
   Heart
 } from 'lucide-react';
@@ -368,78 +370,59 @@ const PropertyDetail: React.FC = () => {
 
             {/* Where you'll sleep */}
             <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
-              <h2 className="text-xl font-bold mb-6">Where you'll sleep</h2>
-              <div className="relative">
-                <Carousel
-                  opts={{
-                    align: "start",
-                    loop: false,
-                  }}
-                  className="mx-auto w-full"
-                >
-                  <CarouselContent className="flex">
-                    {/* Fixed display for first two bedrooms */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full mb-4">
-                      {(property.bedroomDetails?.length ? property.bedroomDetails : generateMockBedroomDetails(property)).slice(0, 2).map((bedroom, index) => (
-                        <div key={index} className="h-full">
-                          <div className="rounded-xl border border-gray-200 overflow-hidden h-full flex flex-col">
-                            <div className="aspect-square relative overflow-hidden bg-gray-100">
-                              <img 
-                                src={bedroom.image || property.imageUrl} 
-                                alt={`${bedroom.name} in ${property.name}`}
-                                className="object-cover w-full h-full"
-                              />
-                            </div>
-                            <div className="p-4 flex-1 flex flex-col">
-                              <h3 className="font-medium text-lg">{bedroom.name}</h3>
-                              <div className="mt-2 space-y-1.5 flex-1">
-                                {bedroom.beds.map((bed, bedIndex) => (
-                                  <div key={bedIndex} className="flex items-center text-gray-600 text-sm">
-                                    <Bed className="h-4 w-4 mr-2 text-gray-400" />
-                                    <span>{bed.count} {bed.count > 1 ? bed.type + 's' : bed.type}</span>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-bold">Where you'll sleep</h2>
+                <div className="text-sm text-gray-600">
+                  {property.bedrooms > 2 && (
+                    <div className="flex items-center gap-2">
+                      <span>1 / {property.bedrooms}</span>
+                      <div className="flex gap-1">
+                        <button className="bg-white border border-gray-300 rounded-full p-1 disabled:opacity-50">
+                          <ChevronLeft className="h-4 w-4" />
+                        </button>
+                        <button className="bg-white border border-gray-300 rounded-full p-1">
+                          <ChevronRight className="h-4 w-4" />
+                        </button>
+                      </div>
                     </div>
-                    
-                    {/* Scrollable carousel for additional bedrooms */}
-                    {property.bedrooms > 2 && (property.bedroomDetails?.length ? property.bedroomDetails : generateMockBedroomDetails(property)).slice(2).map((bedroom, index) => (
-                      <CarouselItem key={index} className="basis-full sm:basis-1/2 md:basis-1/2 lg:basis-1/3">
-                        <div className="p-1 h-full">
-                          <div className="rounded-xl border border-gray-200 overflow-hidden h-full flex flex-col">
-                            <div className="aspect-square relative overflow-hidden bg-gray-100">
-                              <img 
-                                src={bedroom.image || property.imageUrl} 
-                                alt={`${bedroom.name} in ${property.name}`}
-                                className="object-cover w-full h-full"
-                              />
-                            </div>
-                            <div className="p-4 flex-1 flex flex-col">
-                              <h3 className="font-medium text-lg">{bedroom.name}</h3>
-                              <div className="mt-2 space-y-1.5 flex-1">
-                                {bedroom.beds.map((bed, bedIndex) => (
-                                  <div key={bedIndex} className="flex items-center text-gray-600 text-sm">
-                                    <Bed className="h-4 w-4 mr-2 text-gray-400" />
-                                    <span>{bed.count} {bed.count > 1 ? bed.type + 's' : bed.type}</span>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                  <div className="flex justify-end gap-2 mt-4">
-                    <CarouselPrevious className="static translate-y-0 translate-x-0 m-0" />
-                    <CarouselNext className="static translate-y-0 translate-x-0 m-0" />
-                  </div>
-                </Carousel>
+                  )}
+                </div>
               </div>
+              
+              {/* Grid layout for bedrooms */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {(property.bedroomDetails?.length ? property.bedroomDetails : generateMockBedroomDetails(property)).slice(0, 2).map((bedroom, index) => (
+                  <div key={index} className="h-full">
+                    <div className="overflow-hidden h-full flex flex-col">
+                      <div className="aspect-video relative overflow-hidden bg-gray-100 mb-4 rounded-lg">
+                        <img 
+                          src={bedroom.image || property.imageUrl} 
+                          alt={`${bedroom.name} in ${property.name}`}
+                          className="object-cover w-full h-full"
+                        />
+                      </div>
+                      <h3 className="font-medium text-base mb-1">{bedroom.name}</h3>
+                      <div className="text-gray-600 text-sm">
+                        {bedroom.beds.map((bed, bedIndex) => (
+                          <span key={bedIndex}>
+                            {bedIndex > 0 && ', '}
+                            {bed.count} {bed.count > 1 ? bed.type + 's' : bed.type}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              {/* Show more bedrooms button if there are more than 2 */}
+              {property.bedrooms > 2 && (
+                <div className="border-t border-gray-200 mt-8 pt-6">
+                  <button className="text-primary flex items-center font-medium">
+                    Show all bedrooms <ChevronRight className="h-4 w-4 ml-1" />
+                  </button>
+                </div>
+              )}
             </div>
 
 
