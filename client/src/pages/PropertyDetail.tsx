@@ -228,7 +228,24 @@ const PropertyDetail: React.FC = () => {
 
         {/* Property Gallery - Full Width */}
         <div className="mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 h-[400px]">
+          {/* Mobile view - stacked gallery for small screens */}
+          <div className="block md:hidden">
+            <div className="relative">
+              <img 
+                src={property.imageUrl} 
+                alt={property.name}
+                className="w-full h-[300px] object-cover rounded-t-lg" 
+              />
+              <button className="absolute right-4 bottom-4 bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-800 px-4 py-2 rounded-lg shadow-sm transition-all gallery-nav-btn pulse">
+                <span className="flex items-center">
+                  <Tv className="mr-2 h-4 w-4 icon-bounce" /> Show all photos
+                </span>
+              </button>
+            </div>
+          </div>
+          
+          {/* Desktop view - grid gallery for medium screens and up */}
+          <div className="hidden md:grid md:grid-cols-4 gap-2 h-[400px]">
             {/* Main large image */}
             <div className="md:col-span-2 md:row-span-2 h-full">
               <img 
