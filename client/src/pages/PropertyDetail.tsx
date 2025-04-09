@@ -201,22 +201,57 @@ const PropertyDetail: React.FC = () => {
         {/* Property Title */}
         <div className="mb-6">
           <h1 className="text-3xl font-bold mb-2">{property.name}</h1>
-          <div className="flex flex-wrap items-center text-sm gap-y-2">
+          <div className="flex flex-wrap items-center text-sm gap-y-2 justify-between">
             <div className="flex items-center mr-4 text-gray-600">
               <MapPin className="h-4 w-4 mr-1" />
               <span>{property.city}, {state}</span>
             </div>
-            <button 
-              onClick={toggleHeart}
-              className="flex items-center text-gray-600 hover:text-primary transition-colors ml-auto hover-scale"
-            >
-              <Heart className={`h-4 w-4 mr-1 ${isHeartFilled ? 'fill-current text-red-500 heart-beat active' : 'heart-beat'}`} />
-              <span>Save</span>
-            </button>
-            <button className="flex items-center text-gray-600 hover:text-primary transition-colors ml-4 hover-scale">
-              <Share className="h-4 w-4 mr-1 icon-bounce" />
-              <span>Share</span>
-            </button>
+            
+            {/* Why Book Direct Section - Minimal 3-item design */}
+            <div className="flex-1 max-w-md">
+              <div className="flex justify-end gap-6">
+                <div className="flex items-center gap-2 hover-scale transition-all">
+                  <div className="flex-shrink-0 bg-amber-50 p-2 rounded-full">
+                    <svg className="w-4 h-4 text-amber-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 6L14.25 10.5L19.5 11.25L15.75 14.75L16.75 20L12 17.5L7.25 20L8.25 14.75L4.5 11.25L9.75 10.5L12 6Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="currentColor"/>
+                    </svg>
+                  </div>
+                  <span className="text-xs font-medium">5-Star Experience</span>
+                </div>
+                
+                <div className="flex items-center gap-2 hover-scale transition-all">
+                  <div className="flex-shrink-0 bg-green-50 p-2 rounded-full">
+                    <svg className="w-4 h-4 text-green-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <span className="text-xs font-medium">Book Direct & Save</span>
+                </div>
+                
+                <div className="flex items-center gap-2 hover-scale transition-all">
+                  <div className="flex-shrink-0 bg-purple-50 p-2 rounded-full">
+                    <svg className="w-4 h-4 text-purple-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <span className="text-xs font-medium">Pets Allowed</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="flex">
+              <button 
+                onClick={toggleHeart}
+                className="flex items-center text-gray-600 hover:text-primary transition-colors hover-scale"
+              >
+                <Heart className={`h-4 w-4 mr-1 ${isHeartFilled ? 'fill-current text-red-500 heart-beat active' : 'heart-beat'}`} />
+                <span>Save</span>
+              </button>
+              <button className="flex items-center text-gray-600 hover:text-primary transition-colors ml-4 hover-scale">
+                <Share className="h-4 w-4 mr-1 icon-bounce" />
+                <span>Share</span>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -299,15 +334,40 @@ const PropertyDetail: React.FC = () => {
                 </span>
               </p>
               
-              <div className="flex items-center mb-6">
-                <div className="inline-flex items-center bg-gradient-to-r from-amber-100 to-amber-50 px-4 py-3 rounded-lg border border-amber-200 mr-4 shadow-sm">
-                  <Star className="h-5 w-5 text-amber-500 fill-current mr-2" />
-                  <div className="flex flex-col">
-                    <span className="text-amber-700 font-semibold leading-tight">Guest favorite</span>
-                    <span className="text-gray-600 text-sm">One of the most loved homes</span>
+              {/* Why Book Direct - 3 items in horizontal layout replacing Guest Favorite */}
+              <div className="flex flex-wrap items-center mb-6 gap-4">
+                {/* Item 1 - Book Direct and Save */}
+                <div className="inline-flex items-center bg-white border border-gray-200 px-3 py-2 rounded-lg shadow-sm hover-scale transition-all">
+                  <div className="bg-green-50 p-1.5 rounded-full mr-2">
+                    <svg className="w-4 h-4 text-green-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                   </div>
+                  <span className="text-gray-900 text-sm font-medium">Book Direct & Save</span>
                 </div>
-                <div className="flex items-center">
+                
+                {/* Item 2 - 5-Star Experience */}
+                <div className="inline-flex items-center bg-white border border-gray-200 px-3 py-2 rounded-lg shadow-sm hover-scale transition-all">
+                  <div className="bg-amber-50 p-1.5 rounded-full mr-2">
+                    <svg className="w-4 h-4 text-amber-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 6L14.25 10.5L19.5 11.25L15.75 14.75L16.75 20L12 17.5L7.25 20L8.25 14.75L4.5 11.25L9.75 10.5L12 6Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="currentColor"/>
+                    </svg>
+                  </div>
+                  <span className="text-gray-900 text-sm font-medium">5-Star Experience</span>
+                </div>
+                
+                {/* Item 3 - Pets Allowed */}
+                <div className="inline-flex items-center bg-white border border-gray-200 px-3 py-2 rounded-lg shadow-sm hover-scale transition-all">
+                  <div className="bg-purple-50 p-1.5 rounded-full mr-2">
+                    <svg className="w-4 h-4 text-purple-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <span className="text-gray-900 text-sm font-medium">Pets Allowed</span>
+                </div>
+
+                {/* Rating */}
+                <div className="flex items-center ml-auto">
                   <Star className="h-5 w-5 text-amber-500 fill-current" />
                   <span className="font-bold text-lg mx-2">{property.rating?.toFixed(1)}</span>
                   <span className="text-gray-600">({property.reviewCount} reviews)</span>
@@ -440,18 +500,44 @@ const PropertyDetail: React.FC = () => {
               </div>
             </div>
             
-            {/* Location Map - Moved under Guest Reviews */}
+            {/* Location Map - With Static Map and Neighborhood Details */}
             <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
               <h3 className="text-xl font-bold mb-4">Location</h3>
-              <div className="aspect-[16/9] bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="h-8 w-8 text-gray-400 mx-auto mb-2" />
-                  <p className="text-gray-500">Map view of {property.location}</p>
-                </div>
+              <div className="aspect-[16/9] rounded-lg mb-4 overflow-hidden">
+                <img 
+                  src="https://maps.googleapis.com/maps/api/staticmap?center=Miami+Beach,FL&zoom=14&size=800x400&markers=color:red%7CMiami+Beach,FL&key=YOUR_API_KEY&style=feature:administrative|element:labels|visibility:off&style=feature:poi|visibility:off&style=feature:transit|visibility:off&style=feature:road|element:labels|visibility:off&style=feature:road|element:geometry|color:0xf5f5f5&style=feature:landscape|color:0xffffff&style=feature:water|color:0xe8f4f8" 
+                  alt={`Map view of ${property.location}`}
+                  className="w-full h-full object-cover hover-scale transition-transform duration-700"
+                  onError={(e) => {
+                    e.currentTarget.src = "https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?q=80&w=2000&auto=format&fit=crop";
+                  }}
+                />
               </div>
               <div className="text-gray-600">
                 <p className="mb-2"><strong>{property.location}, {property.city}</strong></p>
-                <p>Located in one of {property.city}'s most sought-after neighborhoods.</p>
+                <p className="mb-4">Located in one of {property.city}'s most sought-after neighborhoods, with easy access to beaches, dining, and shopping.</p>
+                
+                <div className="mt-4 border-t border-gray-100 pt-4">
+                  <h4 className="font-semibold mb-2">Neighborhood info:</h4>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="flex items-center">
+                      <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                      <span className="text-sm">Walk Score: 92/100</span>
+                    </div>
+                    <div className="flex items-center">
+                      <div className="w-3 h-3 bg-blue-500 rounded-full mr-2"></div>
+                      <span className="text-sm">Transit Score: 78/100</span>
+                    </div>
+                    <div className="flex items-center">
+                      <div className="w-3 h-3 bg-amber-500 rounded-full mr-2"></div>
+                      <span className="text-sm">Bike Score: 85/100</span>
+                    </div>
+                    <div className="flex items-center">
+                      <div className="w-3 h-3 bg-purple-500 rounded-full mr-2"></div>
+                      <span className="text-sm">Safety Score: 90/100</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -619,64 +705,7 @@ const PropertyDetail: React.FC = () => {
               </Accordion>
             </div>
             
-            {/* Why Book Direct Section - Minimal design like shown in screenshot */}
-            <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
-              <h2 className="text-xl font-bold mb-6">Why Book Direct</h2>
-              
-              <div className="space-y-6 divide-y">
-                {/* Item 1 */}
-                <div className="flex items-start gap-4 py-4 hover-scale transition-all">
-                  <div className="flex-shrink-0 bg-blue-50 p-3 rounded-full">
-                    <svg className="w-6 h-6 text-blue-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M9 12.75L11.25 15L15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-gray-900">Identity verified</h3>
-                    <p className="text-gray-600 text-sm">This host verified their email and phone number.</p>
-                  </div>
-                </div>
-                
-                {/* Item 2 */}
-                <div className="flex items-start gap-4 py-4 hover-scale transition-all">
-                  <div className="flex-shrink-0 bg-amber-50 p-3 rounded-full">
-                    <svg className="w-6 h-6 text-amber-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-gray-900">Pets are allowed</h3>
-                    <p className="text-gray-600 text-sm">Pets will be considered, but must be okayed by the host.</p>
-                  </div>
-                </div>
-                
-                {/* Item 3 */}
-                <div className="flex items-start gap-4 py-4 hover-scale transition-all">
-                  <div className="flex-shrink-0 bg-green-50 p-3 rounded-full">
-                    <svg className="w-6 h-6 text-green-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-gray-900">Book Direct and Save</h3>
-                    <p className="text-gray-600 text-sm">Save on service fees by booking direct on our platform.</p>
-                  </div>
-                </div>
-                
-                {/* Item 4 */}
-                <div className="flex items-start gap-4 py-4 hover-scale transition-all">
-                  <div className="flex-shrink-0 bg-purple-50 p-3 rounded-full">
-                    <svg className="w-6 h-6 text-purple-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-gray-900">Instant confirmation</h3>
-                    <p className="text-gray-600 text-sm">Your booking will be instantly confirmed after payment.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {/* Why Book Direct section removed - Now appears as badges near property title */}
           </div>
 
           {/* Booking Column */}
