@@ -196,12 +196,9 @@ const PropertyDetail: React.FC = () => {
         <div className="mb-6">
           <h1 className="text-3xl font-bold mb-2">{property.name}</h1>
           <div className="flex flex-wrap items-center text-sm gap-y-2">
-            <Badge variant="outline" className="mr-2">
-              {property.type}
-            </Badge>
             <div className="flex items-center mr-4 text-gray-600">
               <MapPin className="h-4 w-4 mr-1" />
-              <span>{property.location}</span>
+              <span>{property.city}, {state}</span>
             </div>
             <button 
               onClick={toggleHeart}
@@ -275,10 +272,7 @@ const PropertyDetail: React.FC = () => {
             {/* Property Title and Host Info */}
             <div className="mb-6">
               <h2 className="text-2xl font-bold mb-2">
-                Entire {property.type} in {property.city}, {property.country}
-                <Badge variant="secondary" className="ml-2 text-xs">
-                  {property.type}
-                </Badge>
+                Entire home in {property.city}, {property.country}
               </h2>
               <p className="text-gray-600 mb-4 flex items-center flex-wrap gap-3">
                 <span className="flex items-center">
@@ -300,9 +294,12 @@ const PropertyDetail: React.FC = () => {
               </p>
               
               <div className="flex items-center mb-6">
-                <div className="flex items-center bg-amber-50 px-3 py-2 rounded-lg border border-amber-200 mr-4">
-                  <span className="text-amber-700 font-semibold mr-2">Guest favorite</span>
-                  <span className="text-gray-600 text-sm">One of the most loved homes</span>
+                <div className="inline-flex items-center bg-gradient-to-r from-amber-100 to-amber-50 px-4 py-3 rounded-lg border border-amber-200 mr-4 shadow-sm">
+                  <Star className="h-5 w-5 text-amber-500 fill-current mr-2" />
+                  <div className="flex flex-col">
+                    <span className="text-amber-700 font-semibold leading-tight">Guest favorite</span>
+                    <span className="text-gray-600 text-sm">One of the most loved homes</span>
+                  </div>
                 </div>
                 <div className="flex items-center">
                   <Star className="h-5 w-5 text-amber-500 fill-current" />
@@ -357,7 +354,7 @@ const PropertyDetail: React.FC = () => {
                 >
                   <CarouselContent>
                     {(property.bedroomDetails?.length ? property.bedroomDetails : generateMockBedroomDetails(property)).map((bedroom, index) => (
-                      <CarouselItem key={index} className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                      <CarouselItem key={index} className="basis-full sm:basis-1/2 md:basis-1/2 lg:basis-1/3">
                         <div className="p-1 h-full">
                           <div className="rounded-xl border border-gray-200 overflow-hidden h-full flex flex-col">
                             <div className="aspect-square relative overflow-hidden bg-gray-100">
@@ -397,6 +394,103 @@ const PropertyDetail: React.FC = () => {
               <h2 className="text-xl font-bold mb-6">Guest Reviews</h2>
               <div className="w-full overflow-x-hidden">
                 <RevyoosWidget className="w-full" widgetCode={property.reviewWidgetCode || undefined} />
+              </div>
+            </div>
+
+            {/* Nearby Landmarks and Points of Interest */}
+            <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
+              <h2 className="text-xl font-bold mb-6">Nearby Places</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <div className="bg-blue-50 p-2 rounded-full mr-3">
+                      <MapPin className="h-4 w-4 text-blue-600" />
+                    </div>
+                    <span>Miami International Airport</span>
+                  </div>
+                  <span className="text-gray-600">8.2 miles</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <div className="bg-green-50 p-2 rounded-full mr-3">
+                      <MapPin className="h-4 w-4 text-green-600" />
+                    </div>
+                    <span>South Beach</span>
+                  </div>
+                  <span className="text-gray-600">1.3 miles</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <div className="bg-purple-50 p-2 rounded-full mr-3">
+                      <MapPin className="h-4 w-4 text-purple-600" />
+                    </div>
+                    <span>Wynwood Arts District</span>
+                  </div>
+                  <span className="text-gray-600">3.7 miles</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <div className="bg-amber-50 p-2 rounded-full mr-3">
+                      <MapPin className="h-4 w-4 text-amber-600" />
+                    </div>
+                    <span>Bayside Marketplace</span>
+                  </div>
+                  <span className="text-gray-600">2.1 miles</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <div className="bg-red-50 p-2 rounded-full mr-3">
+                      <MapPin className="h-4 w-4 text-red-600" />
+                    </div>
+                    <span>Vizcaya Museum & Gardens</span>
+                  </div>
+                  <span className="text-gray-600">5.8 miles</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <div className="bg-teal-50 p-2 rounded-full mr-3">
+                      <MapPin className="h-4 w-4 text-teal-600" />
+                    </div>
+                    <span>Little Havana</span>
+                  </div>
+                  <span className="text-gray-600">4.3 miles</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <div className="bg-orange-50 p-2 rounded-full mr-3">
+                      <MapPin className="h-4 w-4 text-orange-600" />
+                    </div>
+                    <span>Lincoln Road Mall</span>
+                  </div>
+                  <span className="text-gray-600">1.8 miles</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <div className="bg-pink-50 p-2 rounded-full mr-3">
+                      <MapPin className="h-4 w-4 text-pink-600" />
+                    </div>
+                    <span>Frost Museum of Science</span>
+                  </div>
+                  <span className="text-gray-600">3.2 miles</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <div className="bg-indigo-50 p-2 rounded-full mr-3">
+                      <MapPin className="h-4 w-4 text-indigo-600" />
+                    </div>
+                    <span>Coconut Grove</span>
+                  </div>
+                  <span className="text-gray-600">6.7 miles</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <div className="bg-emerald-50 p-2 rounded-full mr-3">
+                      <MapPin className="h-4 w-4 text-emerald-600" />
+                    </div>
+                    <span>Brickell City Centre</span>
+                  </div>
+                  <span className="text-gray-600">2.9 miles</span>
+                </div>
               </div>
             </div>
 
