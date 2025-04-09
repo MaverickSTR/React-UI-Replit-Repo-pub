@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRoute } from 'wouter';
 import { useQuery } from '@tanstack/react-query';
 import { getProperty, getPropertyReviews } from '@/lib/api';
-import RevyoosWidget from '@/components/RevyoosWidget';
 import { 
   Wifi, 
   Snowflake, 
@@ -97,6 +96,32 @@ const PropertyDetail: React.FC = () => {
     queryFn: () => getPropertyReviews(propertyId),
     enabled: !!propertyId,
   });
+  
+  // Add Revyoos widget script
+  useEffect(() => {
+    // First remove any existing script
+    const existingScript = document.querySelector('script[data-revyoos-widget]');
+    if (existingScript) {
+      existingScript.remove();
+    }
+    
+    // Create the script element
+    const script = document.createElement('script');
+    script.defer = true;
+    script.type = 'application/javascript';
+    script.src = 'https://www.revyoos.com/js/widgetBuilder.js';
+    script.setAttribute('data-revyoos-widget', 'eyJwIjoiNjVlMGZiNTg5MjBlYWEwMDYxMjdlNWVjIn0=');
+    
+    // Add it to the document
+    document.body.appendChild(script);
+    
+    // Cleanup on unmount
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
+  }, [propertyId]);
   
   const toggleHeart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -422,19 +447,12 @@ const PropertyDetail: React.FC = () => {
             {/* Reviews Section with Revyoos Widget */}
             <div className="bg-white p-6 rounded-lg shadow-sm mb-6 overflow-hidden">
               <h2 className="text-xl font-bold mb-6">Guest Reviews</h2>
-              <div className="w-full overflow-x-hidden">
-                {/* Direct iframe implementation for Revyoos */}
-                <div className="revyoos-container w-full" style={{ minHeight: '500px' }}>
-                  <iframe 
-                    src="https://www.revyoos.com/embed/widget?p=65e0fb5920ea00061275ec"
-                    title="Revyoos Guest Reviews"
-                    style={{
-                      border: 'none',
-                      width: '100%',
-                      height: '500px'
-                    }}
-                  />
-                </div>
+              <div className="w-full overflow-x-hidden" id="revyoos-container">
+                <div 
+                  className="revyoos-embed-widget w-full" 
+                  data-revyoos-embed='eyJwIjoiNjVlMGZiNTg5MjBlYWEwMDYxMjdlNWVjIn0='
+                  style={{ minHeight: '400px' }}
+                />
               </div>
             </div>
             
