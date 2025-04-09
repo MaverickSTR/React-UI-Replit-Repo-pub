@@ -415,14 +415,7 @@ const PropertyDetail: React.FC = () => {
                 ))}
               </div>
               
-              {/* Show more bedrooms button if there are more than 2 */}
-              {property.bedrooms > 2 && (
-                <div className="border-t border-gray-200 mt-8 pt-6">
-                  <button className="text-primary flex items-center font-medium">
-                    Show all bedrooms <ChevronRight className="h-4 w-4 ml-1" />
-                  </button>
-                </div>
-              )}
+              {/* No "show all bedrooms" button */}
             </div>
 
 
@@ -531,7 +524,74 @@ const PropertyDetail: React.FC = () => {
               </div>
             </div>
 
-            {/* Why Book Direct Section */}
+            {/* FAQ Section */}
+            <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
+              <h2 className="text-xl font-bold mb-6">Frequently asked questions</h2>
+              
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="item-1">
+                  <AccordionTrigger className="text-lg font-medium">
+                    What are the check-in and check-out times?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-gray-600">
+                    Check-in is after 3:00 PM and check-out is before 11:00 AM. Self check-in with a keypad is available. We'll send you the code 24 hours before your arrival.
+                  </AccordionContent>
+                </AccordionItem>
+                
+                <AccordionItem value="item-2">
+                  <AccordionTrigger className="text-lg font-medium">
+                    Is parking available?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-gray-600">
+                    Paid parking garage is available nearby for $25 per day. Street parking is limited but available. We recommend using public transportation as the subway station is only a 5-minute walk away.
+                  </AccordionContent>
+                </AccordionItem>
+                
+                <AccordionItem value="item-3">
+                  <AccordionTrigger className="text-lg font-medium">
+                    What are the house rules?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-gray-600">
+                    We ask that you treat our home with respect. No smoking, parties, or events are allowed. Please be mindful of noise levels after 10 PM to respect our neighbors. Keep the property clean and report any damages promptly.
+                  </AccordionContent>
+                </AccordionItem>
+                
+                <AccordionItem value="item-4">
+                  <AccordionTrigger className="text-lg font-medium">
+                    What is the cancellation policy?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-gray-600">
+                    Flexible cancellation: Full refund if cancelled at least 7 days before check-in. 50% refund if cancelled at least 3 days before check-in. No refunds for cancellations made less than 3 days before check-in.
+                  </AccordionContent>
+                </AccordionItem>
+                
+                <AccordionItem value="item-6">
+                  <AccordionTrigger className="text-lg font-medium">
+                    Things to know
+                  </AccordionTrigger>
+                  <AccordionContent className="text-gray-600">
+                    <ul className="list-disc pl-5 space-y-2">
+                      <li>The property is located on the 3rd floor with elevator access</li>
+                      <li>Quiet hours from 10 PM to 8 AM</li>
+                      <li>Please remove shoes when inside</li>
+                      <li>Emergency contact is available 24/7</li>
+                      <li>Garbage and recycling instructions are in the house manual</li>
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+                
+                <AccordionItem value="item-5">
+                  <AccordionTrigger className="text-lg font-medium">
+                    Are pets allowed?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-gray-600">
+                    We don't allow pets in this property, but service animals are welcome as required by law. There are several pet-friendly parks within walking distance if you're visiting with a local friend who has pets.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+            
+            {/* Why Book Direct Section - Now below FAQ */}
             <div className="bg-gray-50 p-8 rounded-lg shadow-sm mb-6">
               <h2 className="text-2xl font-bold text-center mb-4">Why Book Direct?</h2>
               <p className="text-center text-gray-700 mb-8 max-w-3xl mx-auto">
@@ -603,58 +663,6 @@ const PropertyDetail: React.FC = () => {
                 </div>
               </div>
             </div>
-            
-            {/* FAQ Section */}
-            <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
-              <h2 className="text-xl font-bold mb-6">Frequently asked questions</h2>
-              
-              <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="item-1">
-                  <AccordionTrigger className="text-lg font-medium">
-                    What are the check-in and check-out times?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-gray-600">
-                    Check-in is after 3:00 PM and check-out is before 11:00 AM. Self check-in with a keypad is available. We'll send you the code 24 hours before your arrival.
-                  </AccordionContent>
-                </AccordionItem>
-                
-                <AccordionItem value="item-2">
-                  <AccordionTrigger className="text-lg font-medium">
-                    Is parking available?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-gray-600">
-                    Paid parking garage is available nearby for $25 per day. Street parking is limited but available. We recommend using public transportation as the subway station is only a 5-minute walk away.
-                  </AccordionContent>
-                </AccordionItem>
-                
-                <AccordionItem value="item-3">
-                  <AccordionTrigger className="text-lg font-medium">
-                    Is there a security deposit?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-gray-600">
-                    Yes, we collect a $200 refundable security deposit that will be returned within 7 days after checkout if no damages occur. The deposit is processed through our secure payment system.
-                  </AccordionContent>
-                </AccordionItem>
-                
-                <AccordionItem value="item-4">
-                  <AccordionTrigger className="text-lg font-medium">
-                    Is the property suitable for remote work?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-gray-600">
-                    Absolutely! We offer high-speed fiber internet (300 Mbps) and a dedicated workspace with a comfortable desk and chair. The apartment has multiple outlets and USB charging ports throughout.
-                  </AccordionContent>
-                </AccordionItem>
-                
-                <AccordionItem value="item-5">
-                  <AccordionTrigger className="text-lg font-medium">
-                    Are pets allowed?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-gray-600">
-                    We don't allow pets in this property, but service animals are welcome as required by law. There are several pet-friendly parks within walking distance if you're visiting with a local friend who has pets.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </div>
           </div>
 
           {/* Booking Column */}
@@ -699,14 +707,7 @@ const PropertyDetail: React.FC = () => {
                 </div>
               </div>
               
-              <div className="bg-white p-4 rounded-lg shadow-sm mb-4">
-                <div className="flex items-start">
-                  <Shield className="text-primary mt-1 mr-3 h-5 w-5" />
-                  <p className="text-sm text-gray-600">
-                    <span className="font-semibold text-gray-800">Direct Booking Protection.</span> Every booking includes protection against host cancellations, listing inaccuracies, and other issues.
-                  </p>
-                </div>
-              </div>
+              {/* Direct Booking Protection removed */}
               
               {/* Location Map */}
               <div className="bg-white p-4 rounded-lg shadow-sm">
