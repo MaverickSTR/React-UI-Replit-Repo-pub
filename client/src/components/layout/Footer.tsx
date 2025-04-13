@@ -6,41 +6,32 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-white border-t border-gray-200 pt-12 pb-6">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
           <div>
-            <h3 className="font-bold text-lg mb-4">Support</h3>
+            <h3 className="font-bold text-lg mb-4">Blog</h3>
             <ul className="space-y-3 text-gray-600">
-              <li><Link href="#" className="hover:text-primary transition-colors">Help Center</Link></li>
-              <li><Link href="#" className="hover:text-primary transition-colors">Safety Information</Link></li>
-              <li><Link href="#" className="hover:text-primary transition-colors">Cancellation Options</Link></li>
-              <li><Link href="#" className="hover:text-primary transition-colors">COVID-19 Resources</Link></li>
+              <li><Link href="#" className="hover:text-primary transition-colors">Travel Guides</Link></li>
+              <li><Link href="#" className="hover:text-primary transition-colors">Destination Tips</Link></li>
+              <li><Link href="#" className="hover:text-primary transition-colors">Guest Stories</Link></li>
+              <li><Link href="#" className="hover:text-primary transition-colors">Hosting Advice</Link></li>
             </ul>
           </div>
           <div>
-            <h3 className="font-bold text-lg mb-4">Community</h3>
+            <h3 className="font-bold text-lg mb-4">Properties</h3>
             <ul className="space-y-3 text-gray-600">
-              <li><Link href="#" className="hover:text-primary transition-colors">Blog</Link></li>
+              <li><Link href="#" className="hover:text-primary transition-colors">Featured Stays</Link></li>
+              <li><Link href="#" className="hover:text-primary transition-colors">Luxury Homes</Link></li>
+              <li><Link href="#" className="hover:text-primary transition-colors">Unique Experiences</Link></li>
               <li><Link href="#" className="hover:text-primary transition-colors">For Property Owners</Link></li>
-              <li><Link href="#" className="hover:text-primary transition-colors">Community Forum</Link></li>
-              <li><Link href="#" className="hover:text-primary transition-colors">Partner with Us</Link></li>
             </ul>
           </div>
           <div>
-            <h3 className="font-bold text-lg mb-4">Booking</h3>
+            <h3 className="font-bold text-lg mb-4">Locations</h3>
             <ul className="space-y-3 text-gray-600">
-              <li><Link href="#" className="hover:text-primary transition-colors">How it Works</Link></li>
-              <li><Link href="#" className="hover:text-primary transition-colors">Guarantee</Link></li>
-              <li><Link href="#" className="hover:text-primary transition-colors">Guest Reviews</Link></li>
-              <li><Link href="#" className="hover:text-primary transition-colors">Gift Cards</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-bold text-lg mb-4">About</h3>
-            <ul className="space-y-3 text-gray-600">
-              <li><Link href="#" className="hover:text-primary transition-colors">Our Story</Link></li>
-              <li><Link href="#" className="hover:text-primary transition-colors">Careers</Link></li>
-              <li><Link href="#" className="hover:text-primary transition-colors">Press</Link></li>
-              <li><Link href="#" className="hover:text-primary transition-colors">Contact Us</Link></li>
+              <li><Link href="/city/shenandoah" className="hover:text-primary transition-colors">Shenandoah, VA</Link></li>
+              <li><Link href="/city/annapolis" className="hover:text-primary transition-colors">Annapolis, MD</Link></li>
+              <li><Link href="/city/nashville" className="hover:text-primary transition-colors">Nashville, TN</Link></li>
+              <li><Link href="/city/blue-ridge" className="hover:text-primary transition-colors">Blue Ridge, GA</Link></li>
             </ul>
           </div>
         </div>
