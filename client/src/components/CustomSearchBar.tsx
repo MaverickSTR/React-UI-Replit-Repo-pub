@@ -84,13 +84,15 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
                   value={loc.id} 
                   className="hover:bg-gray-50 rounded-md py-3 px-4 transition-colors duration-150 text-base font-normal data-[state=checked]:bg-gray-50 data-[state=checked]:font-semibold"
                 >
-                  <div className="flex items-center w-full relative">
-                    <span className="flex-1 text-center">{loc.name}</span>
+                  <div className="flex items-center w-full">
                     {selectedLocation === loc.id && (
-                      <svg className="absolute left-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="mr-3" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" fill="currentColor" />
                       </svg>
                     )}
+                    <span className={`${selectedLocation === loc.id ? '' : 'ml-8'}`}>
+                      {loc.name}
+                    </span>
                   </div>
                 </SelectItem>
               ))}
@@ -176,13 +178,15 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
                   value={num.toString()} 
                   className="hover:bg-gray-50 rounded-md py-3 px-4 transition-colors duration-150 text-base font-normal data-[state=checked]:bg-gray-50 data-[state=checked]:font-semibold"
                 >
-                  <div className="flex items-center w-full relative">
-                    <span className="flex-1 text-center">{num} {num === 1 ? 'guest' : 'guests'}</span>
+                  <div className="flex items-center w-full">
                     {guests === num.toString() && (
-                      <svg className="absolute left-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="mr-3" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" fill="currentColor" />
                       </svg>
                     )}
+                    <span className={`${guests === num.toString() ? '' : 'ml-8'}`}>
+                      {num === 1 ? '1 guest' : `${num} guests`}
+                    </span>
                   </div>
                 </SelectItem>
               ))}
