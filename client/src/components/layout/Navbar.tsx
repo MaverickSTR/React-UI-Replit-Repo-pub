@@ -73,10 +73,7 @@ const Navbar: React.FC = () => {
               </DropdownMenuContent>
             </DropdownMenu>
             
-            <Link href="/hospitable-search" className="text-gray-600 hover:text-primary transition-colors">
-              Hospitable Search
-            </Link>
-            
+
             {/* User Menu Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -146,9 +143,7 @@ const Navbar: React.FC = () => {
                     </div>
                   </div>
                   
-                  <Link href="/hospitable-search" className="block py-2 px-4 hover:bg-gray-100 rounded-md">
-                    Hospitable Search
-                  </Link>
+
                   <Link href="#" className="block py-2 px-4 hover:bg-gray-100 rounded-md">
                     Sign in
                   </Link>
