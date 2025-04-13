@@ -64,9 +64,9 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
   };
 
   return (
-    <div className={cn("bg-white rounded-full shadow-md border border-gray-200 flex flex-col md:flex-row items-center hover-lift fade-in", className)}>
+    <div className={cn("bg-white rounded-full shadow-md border border-gray-200 flex flex-col md:flex-row items-center", className)}>
       {/* Where */}
-      <div className="flex-1 py-3 px-6 border-b md:border-b-0 md:border-r border-gray-200 w-full hover:bg-gray-50 transition-colors">
+      <div className="flex-1 py-3 px-6 border-b md:border-b-0 md:border-r border-gray-200 w-full">
         <div className="font-medium text-xs mb-1">Where</div>
         <div className="flex items-center">
           <Select value={selectedLocation} onValueChange={setSelectedLocation}>
@@ -92,13 +92,13 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
       </div>
 
       {/* Check in */}
-      <div className="flex-1 py-3 px-6 border-b md:border-b-0 md:border-r border-gray-200 w-full hover:bg-gray-50 transition-colors">
+      <div className="flex-1 py-3 px-6 border-b md:border-b-0 md:border-r border-gray-200 w-full">
         <div className="font-medium text-xs mb-1">Check in</div>
         <Popover>
           <PopoverTrigger asChild>
             <Button
               variant="ghost"
-              className="p-0 h-auto font-normal text-left text-gray-500 w-full btn-hover-expand"
+              className="p-0 h-auto font-normal text-left text-gray-600 w-full"
             >
               {checkIn ? (
                 format(checkIn, 'MMM d, yyyy')
@@ -107,27 +107,26 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
               )}
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="w-auto p-0 rounded-xl border border-gray-200 shadow-xl fade-in" align="start">
+          <PopoverContent className="w-auto p-0 rounded-lg border-0 shadow-2xl" align="start">
             <Calendar
               mode="single"
               selected={checkIn}
               onSelect={setCheckIn}
               initialFocus
               disabled={(date) => date < new Date()}
-              className="fade-in"
             />
           </PopoverContent>
         </Popover>
       </div>
 
       {/* Check out */}
-      <div className="flex-1 py-3 px-6 border-b md:border-b-0 md:border-r border-gray-200 w-full hover:bg-gray-50 transition-colors">
+      <div className="flex-1 py-3 px-6 border-b md:border-b-0 md:border-r border-gray-200 w-full">
         <div className="font-medium text-xs mb-1">Check out</div>
         <Popover>
           <PopoverTrigger asChild>
             <Button
               variant="ghost"
-              className="p-0 h-auto font-normal text-left text-gray-500 w-full btn-hover-expand"
+              className="p-0 h-auto font-normal text-left text-gray-600 w-full"
             >
               {checkOut ? (
                 format(checkOut, 'MMM d, yyyy')
@@ -136,7 +135,7 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
               )}
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="w-auto p-0 rounded-xl border border-gray-200 shadow-xl fade-in" align="start">
+          <PopoverContent className="w-auto p-0 rounded-lg border-0 shadow-2xl" align="start">
             <Calendar
               mode="single"
               selected={checkOut}
@@ -145,14 +144,13 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
               disabled={(date) => 
                 date < new Date() || (checkIn ? date <= checkIn : false)
               }
-              className="fade-in"
             />
           </PopoverContent>
         </Popover>
       </div>
 
       {/* Who */}
-      <div className="flex-1 py-3 px-6 border-b md:border-b-0 w-full hover:bg-gray-50 transition-colors">
+      <div className="flex-1 py-3 px-6 border-b md:border-b-0 w-full">
         <div className="font-medium text-xs mb-1">Who</div>
         <div className="flex items-center">
           <Select value={guests} onValueChange={setGuests}>
@@ -180,7 +178,7 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
       {/* Search button */}
       <div className="p-2 md:ml-1 mt-2 md:mt-0 md:mr-1">
         <Button 
-          className="rounded-full bg-[#FF385C] hover:bg-[#E00B41] text-white aspect-square w-12 h-12 flex items-center justify-center btn-pulse hover-scale"
+          className="rounded-full bg-[#FF385C] hover:bg-[#E00B41] text-white aspect-square w-12 h-12 flex items-center justify-center"
           onClick={handleSearch}
         >
           <Search className="h-5 w-5" />
