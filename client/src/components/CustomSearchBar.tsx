@@ -63,18 +63,18 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
   };
 
   return (
-    <div className={cn("bg-white/90 backdrop-blur-sm rounded-xl shadow-2xl overflow-hidden p-4 border border-gray-100", className)}>
-      <div className="flex flex-col md:flex-row gap-2">
+    <div className={cn("bg-white/80 backdrop-blur-md rounded-full shadow-lg overflow-hidden py-3 px-5", className)}>
+      <div className="flex flex-col md:flex-row md:items-center">
         {/* Location selector */}
-        <div className="flex-1 border-b md:border-b-0 md:border-r border-gray-200 p-3 transition-all duration-200 hover:bg-gray-50 rounded-lg">
-          <div className="text-sm font-medium mb-1 text-gray-700">Location</div>
+        <div className="flex-1 border-b md:border-b-0 md:border-r border-gray-100 py-2 px-3">
+          <div className="text-xs uppercase tracking-wider mb-1 text-gray-400 font-medium">Location</div>
           <div className="flex items-center">
-            <MapPin className="h-4 w-4 text-primary mr-2" />
+            <MapPin className="h-3.5 w-3.5 text-gray-400 mr-2" />
             <Select value={selectedLocation} onValueChange={setSelectedLocation}>
-              <SelectTrigger className="border-0 p-0 h-auto font-normal text-gray-900 w-full">
+              <SelectTrigger className="border-0 p-0 h-auto font-normal text-gray-700 w-full">
                 <SelectValue placeholder="Where are you going?" />
               </SelectTrigger>
-              <SelectContent className="max-h-[300px]">
+              <SelectContent className="max-h-[300px] rounded-md">
                 {locations.map((loc) => (
                   <SelectItem key={loc.id} value={loc.id}>{loc.name}</SelectItem>
                 ))}
@@ -84,53 +84,52 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
         </div>
 
         {/* Check-in date picker */}
-        <div className="flex-1 border-b md:border-b-0 md:border-r border-gray-200 p-3 transition-all duration-200 hover:bg-gray-50 rounded-lg">
-          <div className="text-sm font-medium mb-1 text-gray-700">Check in</div>
+        <div className="flex-1 border-b md:border-b-0 md:border-r border-gray-100 py-2 px-3">
+          <div className="text-xs uppercase tracking-wider mb-1 text-gray-400 font-medium">Check in</div>
           <Popover>
             <PopoverTrigger asChild>
               <Button
                 variant="ghost"
-                className="p-0 h-auto font-normal text-left text-gray-900 w-full"
+                className="p-0 h-auto font-normal text-left text-gray-700 w-full"
               >
-                <CalendarIcon className="h-4 w-4 text-primary mr-2" />
+                <CalendarIcon className="h-3.5 w-3.5 text-gray-400 mr-2" />
                 {checkIn ? (
-                  <span className="font-medium">{format(checkIn, 'MMM d, yyyy')}</span>
+                  format(checkIn, 'MMM d, yyyy')
                 ) : (
                   <span className="text-gray-500">Select date</span>
                 )}
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-auto p-0 shadow-xl rounded-xl border-gray-100" align="start">
+            <PopoverContent className="w-auto p-0 rounded-md border-0 shadow-lg" align="start">
               <Calendar
                 mode="single"
                 selected={checkIn}
                 onSelect={setCheckIn}
                 initialFocus
                 disabled={(date) => date < new Date()}
-                className="rounded-xl"
               />
             </PopoverContent>
           </Popover>
         </div>
 
         {/* Check-out date picker */}
-        <div className="flex-1 border-b md:border-b-0 md:border-r border-gray-200 p-3 transition-all duration-200 hover:bg-gray-50 rounded-lg">
-          <div className="text-sm font-medium mb-1 text-gray-700">Check out</div>
+        <div className="flex-1 border-b md:border-b-0 md:border-r border-gray-100 py-2 px-3">
+          <div className="text-xs uppercase tracking-wider mb-1 text-gray-400 font-medium">Check out</div>
           <Popover>
             <PopoverTrigger asChild>
               <Button
                 variant="ghost"
-                className="p-0 h-auto font-normal text-left text-gray-900 w-full"
+                className="p-0 h-auto font-normal text-left text-gray-700 w-full"
               >
-                <CalendarIcon className="h-4 w-4 text-primary mr-2" />
+                <CalendarIcon className="h-3.5 w-3.5 text-gray-400 mr-2" />
                 {checkOut ? (
-                  <span className="font-medium">{format(checkOut, 'MMM d, yyyy')}</span>
+                  format(checkOut, 'MMM d, yyyy')
                 ) : (
                   <span className="text-gray-500">Select date</span>
                 )}
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-auto p-0 shadow-xl rounded-xl border-gray-100" align="start">
+            <PopoverContent className="w-auto p-0 rounded-md border-0 shadow-lg" align="start">
               <Calendar
                 mode="single"
                 selected={checkOut}
@@ -139,22 +138,21 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
                 disabled={(date) => 
                   date < new Date() || (checkIn ? date <= checkIn : false)
                 }
-                className="rounded-xl"
               />
             </PopoverContent>
           </Popover>
         </div>
 
         {/* Guests selector */}
-        <div className="flex-1 p-3 transition-all duration-200 hover:bg-gray-50 rounded-lg">
-          <div className="text-sm font-medium mb-1 text-gray-700">Guests</div>
+        <div className="flex-1 py-2 px-3">
+          <div className="text-xs uppercase tracking-wider mb-1 text-gray-400 font-medium">Guests</div>
           <div className="flex items-center">
-            <Users className="h-4 w-4 text-primary mr-2" />
+            <Users className="h-3.5 w-3.5 text-gray-400 mr-2" />
             <Select value={guests} onValueChange={setGuests}>
-              <SelectTrigger className="border-0 p-0 h-auto font-normal text-gray-900 w-full">
+              <SelectTrigger className="border-0 p-0 h-auto font-normal text-gray-700 w-full">
                 <SelectValue placeholder="Add guests" />
               </SelectTrigger>
-              <SelectContent className="shadow-xl rounded-xl border-gray-100">
+              <SelectContent className="rounded-md border-0 shadow-lg">
                 {Array.from({ length: 16 }, (_, i) => i + 1).map((num) => (
                   <SelectItem key={num} value={num.toString()}>
                     {num} {num === 1 ? 'guest' : 'guests'}
@@ -166,12 +164,13 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
         </div>
 
         {/* Search button - in mobile view it's full width below the inputs */}
-        <div className="md:ml-2 mt-4 md:mt-0 flex items-center">
+        <div className="md:ml-4 mt-4 md:mt-0 flex items-center">
           <Button 
-            className="w-full md:w-auto bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white px-8 py-7 rounded-lg font-medium shadow-md hover:shadow-lg transition-all duration-200"
+            className="w-full md:w-auto bg-primary hover:bg-primary/90 text-white px-7 py-2.5 rounded-full font-medium transition-colors"
             onClick={handleSearch}
           >
-            <Search className="h-5 w-5 mr-2" /> Search
+            <Search className="h-4 w-4" />
+            <span className="ml-2 md:hidden lg:inline-block">Search</span>
           </Button>
         </div>
       </div>
