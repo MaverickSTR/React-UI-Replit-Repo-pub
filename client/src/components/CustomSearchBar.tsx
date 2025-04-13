@@ -73,15 +73,24 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
             <SelectTrigger className="border-0 p-0 h-auto font-normal text-gray-600 w-full [&>svg]:hidden">
               <SelectValue placeholder="Search destinations" className="text-center" />
             </SelectTrigger>
-            <SelectContent className="max-h-[300px] rounded-lg bg-white p-1 shadow-2xl border-0 w-full">
+            <SelectContent 
+              className="max-h-[300px] rounded-lg bg-white py-2 px-1 shadow-2xl border-0 w-60 overflow-auto"
+              position="popper"
+              sideOffset={5}
+            >
               {locations.map((loc) => (
                 <SelectItem 
                   key={loc.id} 
                   value={loc.id} 
-                  className="hover:bg-gray-100 rounded-md px-3 py-2 transition-colors duration-150 text-center font-normal"
+                  className="hover:bg-gray-50 rounded-md py-3 px-4 transition-colors duration-150 text-base font-normal data-[state=checked]:bg-gray-50 data-[state=checked]:font-semibold"
                 >
-                  <div className="flex justify-between items-center w-full">
+                  <div className="flex items-center w-full relative">
                     <span className="flex-1 text-center">{loc.name}</span>
+                    {selectedLocation === loc.id && (
+                      <svg className="absolute left-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" fill="currentColor" />
+                      </svg>
+                    )}
                   </div>
                 </SelectItem>
               ))}
@@ -154,17 +163,26 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
         <div className="flex items-center">
           <Select value={guests} onValueChange={setGuests}>
             <SelectTrigger className="border-0 p-0 h-auto font-normal text-gray-600 w-full [&>svg]:hidden">
-              <SelectValue placeholder="Add guests" />
+              <SelectValue placeholder="Add guests" className="text-center" />
             </SelectTrigger>
-            <SelectContent className="max-h-[300px] rounded-lg bg-white p-1 shadow-2xl border-0 w-full">
+            <SelectContent 
+              className="max-h-[300px] rounded-lg bg-white py-2 px-1 shadow-2xl border-0 w-40 overflow-auto"
+              position="popper"
+              sideOffset={5}
+            >
               {Array.from({ length: 16 }, (_, i) => i + 1).map((num) => (
                 <SelectItem 
                   key={num} 
                   value={num.toString()} 
-                  className="hover:bg-gray-100 rounded-md px-3 py-2 transition-colors duration-150 text-center font-normal"
+                  className="hover:bg-gray-50 rounded-md py-3 px-4 transition-colors duration-150 text-base font-normal data-[state=checked]:bg-gray-50 data-[state=checked]:font-semibold"
                 >
-                  <div className="flex justify-between items-center w-full">
+                  <div className="flex items-center w-full relative">
                     <span className="flex-1 text-center">{num} {num === 1 ? 'guest' : 'guests'}</span>
+                    {guests === num.toString() && (
+                      <svg className="absolute left-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" fill="currentColor" />
+                      </svg>
+                    )}
                   </div>
                 </SelectItem>
               ))}
