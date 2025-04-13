@@ -1,9 +1,6 @@
-/* 
- * Microanimations library for StayDirectly
- * These animations enhance the UI with subtle movement and transitions
- */
+/* Microanimations library for StayDirectly */
 
-/* Hover effects for interactive elements */
+/* Hover lift effect */
 .hover-lift {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -13,15 +10,16 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Subtle hover scale */
 .hover-scale {
   transition: transform 0.2s ease;
 }
 
 .hover-scale:hover {
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 
-/* Button animations */
+/* Button animation */
 .btn-pulse {
   position: relative;
   overflow: hidden;
@@ -32,163 +30,41 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 100%;
-  height: 100%;
+  width: 120%;
+  height: 120%;
   background: rgba(255, 255, 255, 0.2);
-  border-radius: inherit;
+  border-radius: 50%;
   transform: translate(-50%, -50%) scale(0);
   opacity: 0;
-  transition: transform 0.4s ease-out, opacity 0.4s ease-out;
-}
-
-.btn-pulse:hover::after {
-  transform: translate(-50%, -50%) scale(1.5);
-  opacity: 0;
+  transition: transform 0.5s, opacity 0.5s;
 }
 
 .btn-pulse:active::after {
   transform: translate(-50%, -50%) scale(1);
-  opacity: 0.3;
-}
-
-/* Icon animations */
-.icon-spin {
-  transition: transform 0.5s ease;
-}
-
-.icon-spin:hover {
-  transform: rotate(180deg);
-}
-
-.icon-bounce {
-  animation: none;
-}
-
-.icon-bounce:hover {
-  animation: iconBounce 0.5s ease;
-}
-
-@keyframes iconBounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-}
-
-/* Gallery navigation animations */
-.gallery-nav-btn {
-  transition: all 0.2s ease;
-}
-
-.gallery-nav-btn:hover {
-  background-color: rgba(255, 255, 255, 0.95) !important;
-  transform: scale(1.1);
-}
-
-/* Card animations */
-.card-hover {
-  transition: all 0.3s ease;
-}
-
-.card-hover:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-}
-
-/* Heart (favorite) animation */
-.heart-beat {
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.heart-beat:hover {
-  transform: scale(1.2);
-}
-
-.heart-beat.active {
-  animation: heartBeat 0.5s ease-out;
-}
-
-@keyframes heartBeat {
-  0% { transform: scale(1); }
-  14% { transform: scale(1.3); }
-  28% { transform: scale(1); }
-  42% { transform: scale(1.3); }
-  70% { transform: scale(1); }
-}
-
-/* Input focus animation */
-.input-focus {
-  transition: all 0.2s ease;
-}
-
-.input-focus:focus {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
-}
-
-/* Page transition animations */
-.page-enter {
-  opacity: 0;
-  transform: translateY(10px);
-}
-
-.page-enter-active {
   opacity: 1;
-  transform: translateY(0);
-  transition: opacity 300ms, transform 300ms;
+  transition: 0s;
 }
 
-.page-exit {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.page-exit-active {
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: opacity 300ms, transform 300ms;
-}
-
-/* Loader animation */
-.loader-spin {
-  animation: loaderSpin 1s linear infinite;
-}
-
-@keyframes loaderSpin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* Shimmer effect for loading states */
-.shimmer {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0.4),
-    rgba(255, 255, 255, 0)
-  );
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-/* Fade in on load for content */
+/* Smooth fade-in animation */
 .fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
-  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Staggered fade in for list items */
+/* Staggered fade-in for list items */
 .stagger-fade-in > * {
   opacity: 0;
-  animation: fadeIn 0.5s ease-out forwards;
+  animation: fadeIn 0.5s ease forwards;
 }
 
 .stagger-fade-in > *:nth-child(1) { animation-delay: 0.1s; }
@@ -197,21 +73,6 @@
 .stagger-fade-in > *:nth-child(4) { animation-delay: 0.4s; }
 .stagger-fade-in > *:nth-child(5) { animation-delay: 0.5s; }
 .stagger-fade-in > *:nth-child(6) { animation-delay: 0.6s; }
-.stagger-fade-in > *:nth-child(7) { animation-delay: 0.7s; }
-.stagger-fade-in > *:nth-child(8) { animation-delay: 0.8s; }
-.stagger-fade-in > *:nth-child(9) { animation-delay: 0.9s; }
-.stagger-fade-in > *:nth-child(10) { animation-delay: 1.0s; }
-
-/* Bounce animation for notifications */
-.bounce {
-  animation: bounce 0.5s ease;
-}
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-10px); }
-  60% { transform: translateY(-5px); }
-}
 
 /* Subtle pulse animation */
 .pulse {
@@ -219,19 +80,72 @@
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
-/* Background gradient animation */
-.bg-gradient-animate {
-  background-size: 400% 400%;
-  animation: gradientAnimation 8s ease infinite;
+/* Image hover zoom effect for galleries */
+.img-zoom-container {
+  overflow: hidden;
 }
 
-@keyframes gradientAnimation {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+.img-zoom {
+  transition: transform 0.5s ease;
+}
+
+.img-zoom:hover {
+  transform: scale(1.05);
+}
+
+/* Smooth page transitions */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+/* Button hover effects */
+.btn-hover-expand {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.btn-hover-expand:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: rgba(0, 0, 0, 0.07);
+  z-index: -1;
+  transition: height 0.3s ease;
+}
+
+.btn-hover-expand:hover:after {
+  height: 100%;
 }

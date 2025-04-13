@@ -18,6 +18,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { cn } from '@/lib/utils';
+import '@/lib/animations.css';
 
 interface CustomSearchBarProps {
   className?: string;
@@ -63,9 +64,9 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
   };
 
   return (
-    <div className={cn("bg-white rounded-full shadow-md border border-gray-200 flex flex-col md:flex-row items-center", className)}>
+    <div className={cn("bg-white rounded-full shadow-md border border-gray-200 flex flex-col md:flex-row items-center hover-lift fade-in", className)}>
       {/* Where */}
-      <div className="flex-1 py-3 px-6 border-b md:border-b-0 md:border-r border-gray-200 w-full">
+      <div className="flex-1 py-3 px-6 border-b md:border-b-0 md:border-r border-gray-200 w-full hover:bg-gray-50 transition-colors">
         <div className="font-medium text-xs mb-1">Where</div>
         <div className="flex items-center">
           <Select value={selectedLocation} onValueChange={setSelectedLocation}>
@@ -74,7 +75,7 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
             </SelectTrigger>
             <SelectContent className="max-h-[300px] rounded-xl">
               {locations.map((loc) => (
-                <SelectItem key={loc.id} value={loc.id}>{loc.name}</SelectItem>
+                <SelectItem key={loc.id} value={loc.id} className="hover-scale">{loc.name}</SelectItem>
               ))}
             </SelectContent>
           </Select>
@@ -82,13 +83,13 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
       </div>
 
       {/* Check in */}
-      <div className="flex-1 py-3 px-6 border-b md:border-b-0 md:border-r border-gray-200 w-full">
+      <div className="flex-1 py-3 px-6 border-b md:border-b-0 md:border-r border-gray-200 w-full hover:bg-gray-50 transition-colors">
         <div className="font-medium text-xs mb-1">Check in</div>
         <Popover>
           <PopoverTrigger asChild>
             <Button
               variant="ghost"
-              className="p-0 h-auto font-normal text-left text-gray-500 w-full"
+              className="p-0 h-auto font-normal text-left text-gray-500 w-full btn-hover-expand"
             >
               {checkIn ? (
                 format(checkIn, 'MMM d, yyyy')
@@ -97,26 +98,27 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
               )}
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="w-auto p-0 rounded-xl border border-gray-200 shadow-xl" align="start">
+          <PopoverContent className="w-auto p-0 rounded-xl border border-gray-200 shadow-xl fade-in" align="start">
             <Calendar
               mode="single"
               selected={checkIn}
               onSelect={setCheckIn}
               initialFocus
               disabled={(date) => date < new Date()}
+              className="fade-in"
             />
           </PopoverContent>
         </Popover>
       </div>
 
       {/* Check out */}
-      <div className="flex-1 py-3 px-6 border-b md:border-b-0 md:border-r border-gray-200 w-full">
+      <div className="flex-1 py-3 px-6 border-b md:border-b-0 md:border-r border-gray-200 w-full hover:bg-gray-50 transition-colors">
         <div className="font-medium text-xs mb-1">Check out</div>
         <Popover>
           <PopoverTrigger asChild>
             <Button
               variant="ghost"
-              className="p-0 h-auto font-normal text-left text-gray-500 w-full"
+              className="p-0 h-auto font-normal text-left text-gray-500 w-full btn-hover-expand"
             >
               {checkOut ? (
                 format(checkOut, 'MMM d, yyyy')
@@ -125,7 +127,7 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
               )}
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="w-auto p-0 rounded-xl border border-gray-200 shadow-xl" align="start">
+          <PopoverContent className="w-auto p-0 rounded-xl border border-gray-200 shadow-xl fade-in" align="start">
             <Calendar
               mode="single"
               selected={checkOut}
@@ -134,22 +136,23 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
               disabled={(date) => 
                 date < new Date() || (checkIn ? date <= checkIn : false)
               }
+              className="fade-in"
             />
           </PopoverContent>
         </Popover>
       </div>
 
       {/* Who */}
-      <div className="flex-1 py-3 px-6 border-b md:border-b-0 w-full">
+      <div className="flex-1 py-3 px-6 border-b md:border-b-0 w-full hover:bg-gray-50 transition-colors">
         <div className="font-medium text-xs mb-1">Who</div>
         <div className="flex items-center">
           <Select value={guests} onValueChange={setGuests}>
             <SelectTrigger className="border-0 p-0 h-auto font-normal text-gray-500 w-full">
               <SelectValue placeholder="Add guests" />
             </SelectTrigger>
-            <SelectContent className="rounded-xl border border-gray-200 shadow-xl">
+            <SelectContent className="rounded-xl border border-gray-200 shadow-xl fade-in">
               {Array.from({ length: 16 }, (_, i) => i + 1).map((num) => (
-                <SelectItem key={num} value={num.toString()}>
+                <SelectItem key={num} value={num.toString()} className="hover-scale">
                   {num} {num === 1 ? 'guest' : 'guests'}
                 </SelectItem>
               ))}
@@ -161,7 +164,7 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
       {/* Search button */}
       <div className="p-2 md:ml-1 mt-2 md:mt-0 md:mr-1">
         <Button 
-          className="rounded-full bg-[#FF385C] hover:bg-[#E00B41] text-white aspect-square w-12 h-12 flex items-center justify-center"
+          className="rounded-full bg-[#FF385C] hover:bg-[#E00B41] text-white aspect-square w-12 h-12 flex items-center justify-center btn-pulse hover-scale"
           onClick={handleSearch}
         >
           <Search className="h-5 w-5" />
