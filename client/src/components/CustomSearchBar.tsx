@@ -70,12 +70,21 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
         <div className="font-medium text-xs mb-1">Where</div>
         <div className="flex items-center">
           <Select value={selectedLocation} onValueChange={setSelectedLocation}>
-            <SelectTrigger className="border-0 p-0 h-auto font-normal text-gray-500 w-full">
+            <SelectTrigger className="border-0 p-0 h-auto font-normal text-gray-600 w-full">
               <SelectValue placeholder="Search destinations" />
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-1">
+                <path d="M2.5 4L6 7.5L9.5 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </SelectTrigger>
-            <SelectContent className="max-h-[300px] rounded-xl">
+            <SelectContent className="max-h-[300px] rounded-lg bg-white p-1 shadow-2xl border-0">
               {locations.map((loc) => (
-                <SelectItem key={loc.id} value={loc.id} className="hover-scale">{loc.name}</SelectItem>
+                <SelectItem 
+                  key={loc.id} 
+                  value={loc.id} 
+                  className="hover:bg-gray-100 rounded-md px-3 py-2 transition-colors duration-150"
+                >
+                  {loc.name}
+                </SelectItem>
               ))}
             </SelectContent>
           </Select>
@@ -147,12 +156,19 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
         <div className="font-medium text-xs mb-1">Who</div>
         <div className="flex items-center">
           <Select value={guests} onValueChange={setGuests}>
-            <SelectTrigger className="border-0 p-0 h-auto font-normal text-gray-500 w-full">
+            <SelectTrigger className="border-0 p-0 h-auto font-normal text-gray-600 w-full">
               <SelectValue placeholder="Add guests" />
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-1">
+                <path d="M2.5 4L6 7.5L9.5 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </SelectTrigger>
-            <SelectContent className="rounded-xl border border-gray-200 shadow-xl fade-in">
+            <SelectContent className="max-h-[300px] rounded-lg bg-white p-1 shadow-2xl border-0">
               {Array.from({ length: 16 }, (_, i) => i + 1).map((num) => (
-                <SelectItem key={num} value={num.toString()} className="hover-scale">
+                <SelectItem 
+                  key={num} 
+                  value={num.toString()} 
+                  className="hover:bg-gray-100 rounded-md px-3 py-2 transition-colors duration-150"
+                >
                   {num} {num === 1 ? 'guest' : 'guests'}
                 </SelectItem>
               ))}
