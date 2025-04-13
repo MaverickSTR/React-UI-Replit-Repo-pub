@@ -67,20 +67,22 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
     <div className={cn("bg-white rounded-full shadow-md border border-gray-200 flex flex-col md:flex-row items-center", className)}>
       {/* Where */}
       <div className="flex-1 py-3 px-6 border-b md:border-b-0 md:border-r border-gray-200 w-full">
-        <div className="font-medium text-xs mb-1">Where</div>
+        <div className="font-medium text-xs mb-1 text-center">Where</div>
         <div className="flex items-center">
           <Select value={selectedLocation} onValueChange={setSelectedLocation}>
             <SelectTrigger className="border-0 p-0 h-auto font-normal text-gray-600 w-full [&>svg]:hidden">
-              <SelectValue placeholder="Search destinations" />
+              <SelectValue placeholder="Search destinations" className="text-center" />
             </SelectTrigger>
-            <SelectContent className="max-h-[300px] rounded-lg bg-white p-1 shadow-2xl border-0">
+            <SelectContent className="max-h-[300px] rounded-lg bg-white p-1 shadow-2xl border-0 w-full">
               {locations.map((loc) => (
                 <SelectItem 
                   key={loc.id} 
                   value={loc.id} 
-                  className="hover:bg-gray-100 rounded-md px-3 py-2 transition-colors duration-150"
+                  className="hover:bg-gray-100 rounded-md px-3 py-2 transition-colors duration-150 text-center font-normal"
                 >
-                  {loc.name}
+                  <div className="flex justify-between items-center w-full">
+                    <span className="flex-1 text-center">{loc.name}</span>
+                  </div>
                 </SelectItem>
               ))}
             </SelectContent>
@@ -90,12 +92,12 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
 
       {/* Check in */}
       <div className="flex-1 py-3 px-6 border-b md:border-b-0 md:border-r border-gray-200 w-full">
-        <div className="font-medium text-xs mb-1">Check in</div>
+        <div className="font-medium text-xs mb-1 text-center">Check in</div>
         <Popover>
           <PopoverTrigger asChild>
             <Button
               variant="ghost"
-              className="p-0 h-auto font-normal text-left text-gray-600 w-full"
+              className="p-0 h-auto font-normal text-center text-gray-600 w-full"
             >
               {checkIn ? (
                 format(checkIn, 'MMM d, yyyy')
@@ -118,12 +120,12 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
 
       {/* Check out */}
       <div className="flex-1 py-3 px-6 border-b md:border-b-0 md:border-r border-gray-200 w-full">
-        <div className="font-medium text-xs mb-1">Check out</div>
+        <div className="font-medium text-xs mb-1 text-center">Check out</div>
         <Popover>
           <PopoverTrigger asChild>
             <Button
               variant="ghost"
-              className="p-0 h-auto font-normal text-left text-gray-600 w-full"
+              className="p-0 h-auto font-normal text-center text-gray-600 w-full"
             >
               {checkOut ? (
                 format(checkOut, 'MMM d, yyyy')
@@ -148,20 +150,22 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
 
       {/* Who */}
       <div className="flex-1 py-3 px-6 border-b md:border-b-0 w-full">
-        <div className="font-medium text-xs mb-1">Who</div>
+        <div className="font-medium text-xs mb-1 text-center">Who</div>
         <div className="flex items-center">
           <Select value={guests} onValueChange={setGuests}>
             <SelectTrigger className="border-0 p-0 h-auto font-normal text-gray-600 w-full [&>svg]:hidden">
               <SelectValue placeholder="Add guests" />
             </SelectTrigger>
-            <SelectContent className="max-h-[300px] rounded-lg bg-white p-1 shadow-2xl border-0">
+            <SelectContent className="max-h-[300px] rounded-lg bg-white p-1 shadow-2xl border-0 w-full">
               {Array.from({ length: 16 }, (_, i) => i + 1).map((num) => (
                 <SelectItem 
                   key={num} 
                   value={num.toString()} 
-                  className="hover:bg-gray-100 rounded-md px-3 py-2 transition-colors duration-150"
+                  className="hover:bg-gray-100 rounded-md px-3 py-2 transition-colors duration-150 text-center font-normal"
                 >
-                  {num} {num === 1 ? 'guest' : 'guests'}
+                  <div className="flex justify-between items-center w-full">
+                    <span className="flex-1 text-center">{num} {num === 1 ? 'guest' : 'guests'}</span>
+                  </div>
                 </SelectItem>
               ))}
             </SelectContent>
