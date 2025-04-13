@@ -70,11 +70,8 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
         <div className="font-medium text-xs mb-1">Where</div>
         <div className="flex items-center">
           <Select value={selectedLocation} onValueChange={setSelectedLocation}>
-            <SelectTrigger className="border-0 p-0 h-auto font-normal text-gray-600 w-full">
+            <SelectTrigger className="border-0 p-0 h-auto font-normal text-gray-600 w-full [&>svg]:hidden">
               <SelectValue placeholder="Search destinations" />
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-1">
-                <path d="M2.5 4L6 7.5L9.5 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
             </SelectTrigger>
             <SelectContent className="max-h-[300px] rounded-lg bg-white p-1 shadow-2xl border-0">
               {locations.map((loc) => (
@@ -154,11 +151,8 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
         <div className="font-medium text-xs mb-1">Who</div>
         <div className="flex items-center">
           <Select value={guests} onValueChange={setGuests}>
-            <SelectTrigger className="border-0 p-0 h-auto font-normal text-gray-600 w-full">
+            <SelectTrigger className="border-0 p-0 h-auto font-normal text-gray-600 w-full [&>svg]:hidden">
               <SelectValue placeholder="Add guests" />
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-1">
-                <path d="M2.5 4L6 7.5L9.5 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
             </SelectTrigger>
             <SelectContent className="max-h-[300px] rounded-lg bg-white p-1 shadow-2xl border-0">
               {Array.from({ length: 16 }, (_, i) => i + 1).map((num) => (
