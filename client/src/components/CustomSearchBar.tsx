@@ -162,36 +162,67 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ className }) => {
       {/* Who */}
       <div className="flex-1 py-3 px-6 border-b md:border-b-0 w-full">
         <div className="font-medium text-xs mb-1 text-center">Who</div>
-        <div className="flex items-center">
-          <Select value={guests} onValueChange={setGuests}>
-            <SelectTrigger className="border-0 p-0 h-auto font-normal text-gray-600 w-full [&>svg]:hidden">
-              <SelectValue placeholder="Add guests" className="text-center" />
-            </SelectTrigger>
-            <SelectContent 
-              className="max-h-[300px] rounded-lg bg-white py-2 px-1 shadow-2xl border-0 w-40 overflow-auto"
-              position="popper"
+        <div className="flex items-center justify-center">
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                variant="ghost"
+                className="p-0 h-auto font-normal text-center text-gray-600 w-full"
+              >
+                {parseInt(guests) > 0 ? (
+                  <span>{parseInt(guests) === 1 ? '1 guest' : `${guests} guests`}</span>
+                ) : (
+                  <span>Add guests</span>
+                )}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent 
+              className="w-72 p-4 rounded-lg border-0 shadow-2xl" 
+              align="center"
               sideOffset={5}
             >
-              {Array.from({ length: 16 }, (_, i) => i + 1).map((num) => (
-                <SelectItem 
-                  key={num} 
-                  value={num.toString()} 
-                  className="hover:bg-gray-50 rounded-md py-3 px-4 transition-colors duration-150 text-base font-normal data-[state=checked]:bg-gray-50 data-[state=checked]:font-semibold"
-                >
-                  <div className="flex items-center w-full">
-                    {guests === num.toString() && (
-                      <svg className="mr-3" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" fill="currentColor" />
-                      </svg>
-                    )}
-                    <span className={`${guests === num.toString() ? '' : 'ml-8'}`}>
-                      {num === 1 ? '1 guest' : `${num} guests`}
-                    </span>
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex flex-col">
+                    <span className="text-base font-medium">Adults</span>
+                    <span className="text-sm text-gray-500">Ages 13 or above</span>
                   </div>
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+                  <div className="flex items-center space-x-3">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="h-8 w-8 rounded-full p-0 flex items-center justify-center border-gray-400"
+                      onClick={() => {
+                        const current = parseInt(guests);
+                        if (current > 0) setGuests((current - 1).toString());
+                      }}
+                      disabled={parseInt(guests) === 0}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                      </svg>
+                    </Button>
+                    <span className="w-5 text-center">{guests}</span>
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="h-8 w-8 rounded-full p-0 flex items-center justify-center border-gray-400"
+                      onClick={() => {
+                        const current = parseInt(guests);
+                        setGuests((current + 1).toString());
+                      }}
+                      disabled={parseInt(guests) >= 16}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19" />
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                      </svg>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </PopoverContent>
+          </Popover>
         </div>
       </div>
 
