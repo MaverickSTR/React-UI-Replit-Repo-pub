@@ -74,7 +74,7 @@ const Navbar: React.FC = () => {
             </DropdownMenu>
             
 
-            {/* User Menu Dropdown */}
+            {/* User Menu Dropdown - temporarily hidden
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" className="rounded-full flex items-center gap-2 px-4">
@@ -105,6 +105,7 @@ const Navbar: React.FC = () => {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
+            */}
           </nav>
           
           {/* Mobile menu button */}
@@ -144,9 +145,11 @@ const Navbar: React.FC = () => {
                   </div>
                   
 
+                  {/* Sign in link hidden for now
                   <Link href="#" className="block py-2 px-4 hover:bg-gray-100 rounded-md">
                     Sign in
                   </Link>
+                  */}
                 </div>
               </div>
             </SheetContent>
